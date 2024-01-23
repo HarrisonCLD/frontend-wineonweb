@@ -1,0 +1,44 @@
+.list_stock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+  border-radius: 15px;
+  border: 3px solid #e8e8e8;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th,
+    td {
+      max-height: 80px;
+      padding: 8px;
+      border-bottom: 2px solid #e8e8e8;
+    }
+
+    tr {
+      &:hover {
+        background-color: #e8e8e8;
+        cursor: pointer;
+      }
+    }
+
+    td.description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-wrap: nowrap;
+      max-width: 140px;
+    }
+
+    td.image img {
+      height: 90px;
+    }
+
+    table .image {
+      height: 50px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@keyframes cartHoverEffect {
+  50% {
+    transform: translateY(-4px);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+
+  90% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: translateY(0px);
+    transform: rotate(0deg);
+  }
+}
+@keyframes cartIconHoverEffect {
+  50% {
+    transform: translateY(-3px);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+
+  90% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: translateY(0px);
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,74 @@
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 1.5vh;
+  background-color: $primary-color;
+  max-height: $navbar-height;
+  border-bottom: 0.5px solid white;
+
+  .logo {
+    button {
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+
+    & > button:nth-child(1) {
+      position: relative;
+      margin-top: 10px;
+      color: white;
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 1000ms ease-in-out;
+
+      &:hover {
+        animation: cartHoverEffect 1000ms forwards;
+      }
+      &:hover .back_icon_cart {
+        animation: cartIconHoverEffect 1100ms forwards;
+      }
+
+      img {
+        width: 3vh;
+      }
+
+      .back_icon_cart {
+        @extend %flexCenter;
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        height: 15px;
+        width: 15px;
+        background-color: $main-color;
+        border-radius: 50%;
+        transition: transform 300ms ease-in-out;
+
+        p {
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    & > button:nth-child(2) {
+      @extend %buttonForm;
+      margin-left: 1vw;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 3vh;
+        height: 3vh;
+      }
+    }
+  }
+}

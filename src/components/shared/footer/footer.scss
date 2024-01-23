@@ -1,0 +1,42 @@
+footer {
+  display: flex;
+  width: 100%;
+  padding: 50px;
+  background-color: $primary-color;
+
+  .social_container {
+    position: absolute;
+    right: 2%;
+
+    ul {
+      display: flex;
+      a {
+        @extend %flexCenter;
+
+        &:hover img {
+          transform: scale(1.05);
+        }
+        img {
+          transition: transform 300ms ease-in-out;
+        }
+      }
+    }
+  }
+
+  div {
+    margin: 20px 40px;
+
+    ul {
+      li {
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 20px 0px;
+
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}

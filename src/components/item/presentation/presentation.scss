@@ -1,0 +1,86 @@
+.presentation {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 700px;
+  padding: 0vh 3vh;
+  background: radial-gradient(circle, white -1000%, $primary-color 100%);
+
+  .page_accueil_column1 {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2vh;
+
+    h1 {
+      font-size: 10vh;
+      line-height: 10vh;
+      font-family: $font-family-second;
+      font-weight: 100;
+      color: white;
+    }
+
+    P {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 300;
+      line-height: 3vh;
+    }
+  }
+
+  .page_accueil_bottle_img {
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    margin-left: -1vw;
+    object-fit: contain;
+    opacity: 0.7;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .page_accueil_bg_img {
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 10vh;
+    opacity: 0.5;
+  }
+
+  .page_accueil_column2 {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2vh;
+
+    h2 {
+      color: white;
+      font-family: $font-family-second;
+      font-weight: 200;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 3vh;
+    }
+
+    span {
+      color: white;
+      font-size: 4vh;
+      display: flex;
+      gap: 2vh;
+
+      button {
+        @extend %buttonForm;
+        cursor: pointer;
+      }
+    }
+  }
+}

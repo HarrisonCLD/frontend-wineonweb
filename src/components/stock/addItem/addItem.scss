@@ -1,0 +1,46 @@
+.itemForm {
+  @extend %flexCenter;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  width: 80%;
+  margin: 30px 0px 40px 0px;
+  padding: 20px 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  h3 {
+    margin: 20px 0px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    margin: 15px 0px;
+    padding: 8px 13px;
+    border: 1px solid #e8e8e8;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+
+    label {
+      text-wrap: nowrap;
+      margin-left: 15px;
+    }
+  }
+
+  .validation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+
+    button {
+      @extend %buttonForm;
+      padding: 1vh 2vh;
+    }
+  }
+}

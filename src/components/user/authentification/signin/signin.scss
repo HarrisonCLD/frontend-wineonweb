@@ -1,0 +1,58 @@
+// Scss du composant Login :
+.signin {
+  @extend %flexCenter;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  padding-right: 35%;
+  padding-left: 35% !important;
+  background: radial-gradient(circle, white -1000%, $primary-color 100%);
+  gap: 2vh;
+
+  input {
+    @extend %inputForm;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid white;
+    }
+  }
+
+  button {
+    @extend %buttonForm;
+    width: 100%;
+  }
+
+  p {
+    color: white;
+    a {
+      margin-left: 8px;
+      letter-spacing: 0.6px;
+      background-color: transparent;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  img {
+    position: absolute;
+    z-index: 1;
+    width: 35vh;
+    height: 35vh;
+    opacity: 0.1;
+    input {
+      @extend %inputForm;
+    }
+  }
+  .login-page-image1 {
+    bottom: 10vh;
+    right: 10vh;
+    transform: rotate(200deg);
+  }
+  .login-page-image2 {
+    top: 15vh;
+    left: 10vh;
+  }
+}

@@ -1,0 +1,16 @@
+.navbackoffice {
+  z-index: 5;
+  margin-top: 20px;
+  padding: 0px;
+  background-color: white;
+
+  ul {
+    display: flex;
+
+    li {
+      color: black;
+      margin: 0px 20px;
+      cursor: pointer;
+    }
+  }
+}

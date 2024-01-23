@@ -1,0 +1,162 @@
+@keyframes apparitionCard {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 0%;
+  }
+  60% {
+    height: 80%;
+    width: 80%;
+  }
+  100% {
+    opacity: 1;
+    height: 80%;
+    width: 80%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInImg {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.viewing {
+  display: flex !important;
+}
+
+.itemcard {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0vh 0vh 1vh rgba(0, 0, 0, 0.5);
+  border-radius: 2vh;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: apparitionCard 500ms forwards;
+
+  .loading {
+    width: 100%;
+    @extend %flexCenter;
+    opacity: 0;
+    animation: fadeIn 300ms forwards;
+  }
+
+  .success {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .checkmark__circle {
+      fill: white;
+    }
+  }
+
+  button:nth-child(1) {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    height: 3vh;
+    width: 2vw;
+    max-width: 2vw;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 300ms forwards;
+    animation-delay: 500ms;
+
+    .closeLine_1,
+    .closeLine_2 {
+      width: 100%;
+      height: 1px;
+      background-color: black;
+    }
+    .closeLine_1 {
+      transform: rotate(-45deg);
+      position: relative;
+      top: 1px;
+    }
+    .closeLine_2 {
+      transform: rotate(45deg);
+    }
+  }
+
+  .left {
+    width: 35%;
+    background: radial-gradient(circle, white -1000%, #0b0a09 100%);
+    opacity: 0;
+    transform-origin: center;
+    transform: scale(0);
+    animation: fadeInImg 600ms forwards;
+    animation-delay: 0.2s;
+
+    .product_image_view_item {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .right {
+    width: 65%;
+    padding: 10vh 10vh 0vh 10vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 1000ms forwards;
+    animation-delay: 0.5s;
+
+    h2 {
+      font-size: 5vh;
+    }
+    .type {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .options {
+      ul {
+        display: flex;
+
+        li {
+          @extend %flexCenter;
+          min-width: 65px;
+          margin: 0px 20px;
+          padding: 10px;
+          border: 1px solid black;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #e8e8e8;
+          }
+        }
+        .option_active {
+          background-color: #e8e8e8;
+        }
+      }
+    }
+  }
+}
