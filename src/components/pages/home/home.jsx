@@ -10,7 +10,7 @@ import ItemCard from "@components/item/card";
 import IsLoading from "@messagebox/loadingbox";
 import Cart from "@components/paiement/cart/cart";
 
-import { call } from "@helpers/api.helper";
+import { get_items } from "@helpers/api/item.api.helper";
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -19,15 +19,15 @@ export default function Home() {
   const cart = useSelector((state) => state.Cart.show);
 
   useEffect(() => {
-    call("get", "/items", setItems);
+    get_items(setItems);
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, [items]);
-
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, [items]);
+  console.log(items);
   return (
     <main className="home">
       {cart && <Cart />}

@@ -1,10 +1,8 @@
 import axios from "axios";
 
-import { set_status } from "@services/user.service";
-
 const API = "http://localhost:10051";
 
-export const get_items = async (dispatch, setState) => {
+export const get_items = async (setState) => {
   try {
     const response = await axios({
       method: "get",
