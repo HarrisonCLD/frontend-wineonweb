@@ -3,7 +3,7 @@ import { configureStore as reduxConfigureStore, createSlice } from "@reduxjs/too
 export const cartServices = createSlice({
   name: "cart",
   initialState: {
-    show: null,
+    show: false,
     items: [],
   },
 

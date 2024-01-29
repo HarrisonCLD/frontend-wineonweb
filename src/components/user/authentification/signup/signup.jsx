@@ -1,33 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { InputForm, Select, ButtonEvent } from "@rowComponents";
 import AuthentificationBox from "@messagebox/authentificationbox";
 
-import { navigateTo } from "@helpers/navigation.helper";
+import { set_status } from "@services/user.service";
 
-import { signup } from "@services/user.service";
+import { navigateTo } from "@helpers/navigation.helper";
+import { set_newuser } from "@helpers/api/user.api.helper";
 
 export default function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState("");
+  const loading = useSelector((state) => state.User.status);
   const [formData, setFormData] = useState({});
 
   const set_signup = async () => {
-    console.log("ici");
-    setLoading("pending");
-    console.log(formData);
-    await dispatch(signup(formData));
-    setTimeout(() => {
-      setLoading("success");
-    }, 1000);
-    setTimeout(() => {
-      navigateTo(navigate, "/");
-      setLoading(null);
-    }, 2500);
+    await dispatch(set_status("pending"));
+    await set_newuser(dispatch, navigate, formData);
   };
 
   return (

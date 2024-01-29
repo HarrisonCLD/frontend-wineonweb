@@ -11,7 +11,7 @@
   color: white;
 }
 
-.news .items_scroll .vsmallcard button, .presentation .page_accueil_column2 span button, .cart_content a, nav .menu > button:nth-child(2), .fournisseurForm button, .itemForm .validation button, .signin button, .signup button {
+.news .items_scroll .vsmallcard button, .presentation .page_accueil_column2 span button, .cart_content a, .waiting-auth .alert button, nav .menu > button:nth-child(2), .fournisseurForm button, .itemForm .validation button, .signin button, .signup button {
   padding: 0.7vh 1.5vh;
   border-radius: 3px;
   cursor: pointer;
@@ -19,7 +19,7 @@
   background-color: #d1484d;
   transition: all 250ms ease-in-out;
 }
-.news .items_scroll .vsmallcard button:hover, .presentation .page_accueil_column2 span button:hover, .cart_content a:hover, nav .menu > button:hover:nth-child(2), .fournisseurForm button:hover, .itemForm .validation button:hover, .signin button:hover, .signup button:hover {
+.news .items_scroll .vsmallcard button:hover, .presentation .page_accueil_column2 span button:hover, .cart_content a:hover, .waiting-auth .alert button:hover, nav .menu > button:hover:nth-child(2), .fournisseurForm button:hover, .itemForm .validation button:hover, .signin button:hover, .signup button:hover {
   background-color: rgba(210, 37, 44, 0.7);
 }
 
@@ -561,6 +561,23 @@ nav .menu > button:nth-child(2) img {
   background-color: #e8e8e8;
 }
 
+.waiting-auth .alert {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  height: 25%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
+.waiting-auth .alert .message {
+  font-weight: 700;
+  text-align: center;
+}
 @keyframes lds-roller {
   0% {
     transform: rotate(0deg);

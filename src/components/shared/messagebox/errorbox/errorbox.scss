@@ -1,0 +1,24 @@
+.waiting-auth {
+  .alert {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    height: 25%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+
+    .message {
+      font-weight: 700;
+      text-align: center;
+    }
+
+    button {
+      @extend %buttonForm;
+    }
+  }
+}

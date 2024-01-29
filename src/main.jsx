@@ -20,6 +20,7 @@ function Main() {
           <Routes>
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/paiement" element={""} />
             <Route path="/personal/*" element={<BackOffice />} />
             <Route path="/" element={<Home />} />
           </Routes>

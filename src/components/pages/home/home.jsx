@@ -10,16 +10,16 @@ import ItemCard from "@components/item/card";
 import IsLoading from "@messagebox/loadingbox";
 import Cart from "@components/paiement/cart/cart";
 
-import { get_items } from "@helpers/api.helper";
+import { call } from "@helpers/api.helper";
 
 export default function Home() {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((state) => state.Item.status);
   const view = useSelector((state) => state.Item.view);
   const cart = useSelector((state) => state.Cart.show);
 
   useEffect(() => {
-    get_items("/items", setItems);
+    call("get", "/items", setItems);
   }, []);
 
   useEffect(() => {

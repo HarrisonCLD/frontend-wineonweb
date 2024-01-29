@@ -1,31 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { InputForm, InputPassword, ButtonEvent } from "@rowComponents";
 import AuthentificationBox from "@messagebox/authentificationbox";
 
+import { set_status } from "@services/user.service";
+
 import { navigateTo } from "@helpers/navigation.helper";
 
-import { signin } from "@services/user.service";
+import { check_authentification } from "@helpers/api/user.api.helper";
 
 export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState("");
+  const loading = useSelector((state) => state.User.status);
   const [formData, setFormData] = useState({});
 
   const set_signin = async () => {
-    setLoading("pending");
-    await dispatch(signin(formData));
-    setTimeout(() => {
-      setLoading("success");
-    }, 1000);
-    setTimeout(() => {
-      navigateTo(navigate, "/personal/info");
-      setLoading(null);
-    }, 2500);
+    await dispatch(set_status("pending"));
+    await check_authentification(dispatch, navigate, formData);
   };
 
   return (
