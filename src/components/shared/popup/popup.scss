@@ -1,0 +1,13 @@
+.popup {
+  position: absolute;
+  z-index: 7;
+  bottom: 20px;
+  padding: 20px;
+  background-color: #b6b6b6;
+
+  button {
+    @extend %buttonForm;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}

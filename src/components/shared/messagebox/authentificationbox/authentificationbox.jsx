@@ -4,7 +4,6 @@ import Success from "../successbox/successbox";
 import AlertBox from "../errorbox/errorbox";
 
 export default function AuthentificationBox({ setStatus }) {
-  console.log(setStatus);
   return (
     <div className="waiting-auth">
       {setStatus === "pending" && <IsLoading />}

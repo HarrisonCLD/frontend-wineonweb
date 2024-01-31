@@ -4,15 +4,19 @@ import { SearchBar } from "@rowComponents";
 
 import { SmallCard } from "@components/item/smallcard";
 
-import { delayDebounceFn } from "../../shared/helpers/grid.helper";
+import { delayDebounceFn } from "@helpers/grid.helper";
 
 export default function GridItems({ data, active }) {
-  const [filterData, setFilterData] = useState(data.slice());
+  const [filterData, setFilterData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     delayDebounceFn(searchTerm, data, setFilterData);
   }, [searchTerm, data]);
+
+  useEffect(() => {
+    setFilterData(data.slice());
+  }, [data]);
 
   return (
     <section className={active ? "grid wait" : "grid"}>

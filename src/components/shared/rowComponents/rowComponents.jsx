@@ -54,7 +54,7 @@ export const Select = ({ children, func, setState, state, name }) => {
 
   const MultipleFunc = (event) => {
     handleChange(event);
-    func && func(event);
+    func && func();
   };
 
   return (
@@ -106,6 +106,30 @@ export const CheckBox = ({ label, name, setState, state }) => {
 export const CloseButtonItemCard = ({ close }) => {
   return (
     <button onClick={() => close(set_view(null))}>
+      <div className="closeLine_1"></div>
+      <div className="closeLine_2"></div>
+    </button>
+  );
+};
+
+export const CloseButtonImageGrid = ({ close }) => {
+  return (
+    <button onClick={() => close(null)} className="closeButtonGrid">
+      <div className="closeLine_1"></div>
+      <div className="closeLine_2"></div>
+    </button>
+  );
+};
+
+export const SupprButton = ({ state, setState }) => {
+  const supprimer = () => {
+    const newState = { ...state };
+    newState.image && delete newState.image;
+    setState(newState);
+  };
+
+  return (
+    <button onClick={supprimer}>
       <div className="closeLine_1"></div>
       <div className="closeLine_2"></div>
     </button>

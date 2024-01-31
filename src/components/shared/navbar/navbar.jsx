@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ButtonNavigation } from "@rowComponents";
@@ -11,6 +11,7 @@ export default function Navbar({ setState }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.Cart.items);
+  const status = useSelector((state) => state.User.status);
 
   return (
     <nav>
@@ -38,7 +39,7 @@ export default function Navbar({ setState }) {
             <p>{cart.length}</p>
           </div>
         </ButtonNavigation>
-        <ButtonNavigation name="account" onClick={() => navigateTo(navigate, "/signup")} img="./src/assets/images/icn-mon-compte.png">
+        <ButtonNavigation name="account" onClick={() => (status === "login" ? navigateTo(navigate, "/personal/info") : navigateTo(navigate, "/signup"))} img="./src/assets/images/icn-mon-compte.png">
           <p>Mon compte</p>
         </ButtonNavigation>
       </div>

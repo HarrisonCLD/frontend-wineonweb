@@ -26,7 +26,11 @@ export const SmallCard = ({ data }) => {
   return (
     <div className="smallcard" onClick={() => dispatch(set_view(item.id))}>
       <div className="top">
-        <img className="img" src={`./src/assets/images/${item.image}`} alt={item.nom} />
+        <img
+          className="img"
+          src={`./src/assets/images/${item.image}`}
+          alt={item.nom}
+        />
       </div>
       <div className="bot">
         <h2>{item.nom}</h2>
@@ -44,7 +48,8 @@ export const SmallCard = ({ data }) => {
                   e.stopPropagation();
                   setOptionSelected(i);
                 }}
-                className={optionSelected === i ? "selected" : ""}>
+                className={optionSelected === i ? "selected" : ""}
+              >
                 {row}
               </p>
             ))}
@@ -63,7 +68,8 @@ export const SmallCard = ({ data }) => {
               prix: item.prix[optionSelected],
             })
           );
-        }}>
+        }}
+      >
         +
       </ButtonEvent>
     </div>

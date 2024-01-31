@@ -8,5 +8,7 @@ export {
   SocialMediaRow,
   CheckBox,
   CloseButtonItemCard,
+  CloseButtonImageGrid,
+  SupprButton,
   SearchBar,
 } from "./rowComponents";

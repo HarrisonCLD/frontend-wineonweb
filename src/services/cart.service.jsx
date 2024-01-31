@@ -1,4 +1,7 @@
-import { configureStore as reduxConfigureStore, createSlice } from "@reduxjs/toolkit";
+import {
+  configureStore as reduxConfigureStore,
+  createSlice,
+} from "@reduxjs/toolkit";
 
 export const cartServices = createSlice({
   name: "cart",
@@ -13,7 +16,11 @@ export const cartServices = createSlice({
     },
 
     addtoCart: (state, data) => {
-      const existingItem = state.items.find((item) => item.id === data.payload.id && item.option_attribut === data.payload.option_attribut);
+      const existingItem = state.items.find(
+        (item) =>
+          item.id === data.payload.id &&
+          item.option_attribut === data.payload.option_attribut
+      );
       if (existingItem) {
         existingItem.quantite++;
       } else {
@@ -23,7 +30,7 @@ export const cartServices = createSlice({
     },
 
     increaseItem: (state, action) => {
-      const itemId = action.payload.id;
+      const itemId = action.payload;
       const itemToIncrease = state.items.find((item) => item.id === itemId);
       if (itemToIncrease) {
         itemToIncrease.quantite++;
@@ -31,9 +38,10 @@ export const cartServices = createSlice({
     },
 
     decreaseItem: (state, action) => {
-      const itemId = action.payload.id;
-      const itemToDecreaseIndex = state.items.findIndex((item) => item.id === itemId);
-
+      const itemId = action.payload;
+      const itemToDecreaseIndex = state.items.findIndex(
+        (item) => item.id === itemId
+      );
       if (itemToDecreaseIndex !== -1) {
         const itemToDecrease = state.items[itemToDecreaseIndex];
         itemToDecrease.quantite--;
@@ -46,4 +54,5 @@ export const cartServices = createSlice({
   },
 });
 
-export const { show, items, showCart, addtoCart, increaseItem, decreaseItem } = cartServices.actions;
+export const { show, items, showCart, addtoCart, increaseItem, decreaseItem } =
+  cartServices.actions;

@@ -27,7 +27,7 @@ export default function Home() {
   //     setLoading(false);
   //   }, 1000);
   // }, [items]);
-  console.log(items);
+
   return (
     <main className="home">
       {cart && <Cart />}

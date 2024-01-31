@@ -3,7 +3,7 @@ import { set_status } from "@services/user.service";
 
 import { navigateTo } from "@helpers/navigation.helper";
 
-import { set_token, set_user } from "@services/user.service";
+import { set_user } from "@services/user.service";
 
 const API = "http://localhost:10051";
 
@@ -17,11 +17,12 @@ export const check_authentification = async (dispatch, navigate, credentials) =>
         "Content-Type": "application/json",
       },
     });
-    dispatch(set_token(`Bearer ${response.data.token}`));
+    localStorage.setItem("token", `Bearer ${response.data.token}`);
     setTimeout(() => {
       dispatch(set_status("success"));
       setTimeout(() => {
         navigateTo(navigate, "/personal/info");
+        dispatch(set_status("login"));
       }, 500);
     }, 1000);
   } catch (error) {
@@ -63,7 +64,7 @@ export const get_user = async (dispatch, bearer) => {
       url: `${API}/authentification/user/profile`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${bearer}`,
+        Authorization: bearer,
       },
     });
     dispatch(set_user(response.data[0]));

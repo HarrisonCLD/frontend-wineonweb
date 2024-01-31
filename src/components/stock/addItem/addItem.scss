@@ -32,15 +32,8 @@
     }
   }
 
-  .validation {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0px;
-
-    button {
-      @extend %buttonForm;
-      padding: 1vh 2vh;
-    }
+  button {
+    @extend %buttonForm;
+    padding: 1vh 2vh;
   }
 }
