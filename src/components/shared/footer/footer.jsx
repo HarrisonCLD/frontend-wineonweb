@@ -1,3 +1,4 @@
+import NewsLetter from "@components/shared/newsletter";
 import { SocialMediaRow } from "@rowComponents";
 
 export default function Footer() {
@@ -23,25 +24,9 @@ export default function Footer() {
         </ul>
       </div>
       <div className="right_box">
-        <ul>
-          <li>
-            <a href="#">Lien 1</a>
-          </li>
-          <li>
-            <a href="#">Lien 2</a>
-          </li>
-          <li>
-            <a href="#">Lien 3</a>
-          </li>
-          <li>
-            <a href="#">Lien 4</a>
-          </li>
-          <li>
-            <a href="#">Lien 5</a>
-          </li>
-        </ul>
+        <SocialMediaRow />
+        <NewsLetter />
       </div>
-      {/* <SocialMediaRow /> */}
     </footer>
   );
 }

@@ -1,37 +1,44 @@
 // Importation des fichiers (variables, mixins, etc..) :
 @import "_variables";
 @import "_mixins";
+@import "_animations";
 
 // #importation#
 @import "../../src/components/user/informationsUser/informationsUser";
 @import "../../src/components/user/authentification/signup/signup";
 @import "../../src/components/user/authentification/signin/signin";
-@import "../../src/components/stock/settingsItem/settings.item";
 @import "../../src/components/stock/listStock/listStock";
 @import "../../src/components/stock/gridImage/gridImage";
+@import "../../src/components/stock/formulaireItem/formulaireItem";
 @import "../../src/components/stock/addOptionAttribut/addoptionattribut";
 @import "../../src/components/stock/addItem/addItem";
 @import "../../src/components/stock/addFournisseur/addFournisseur";
 @import "../../src/components/stock/addCategorie/addcategorie";
 @import "../../src/components/stock/addAttribut/addattribut";
 @import "../../src/components/shared/popup/popup";
+@import "../../src/components/shared/newsletter/newsletter";
 @import "../../src/components/shared/navbarBackoffice/navbarBackoffice";
 @import "../../src/components/shared/navbar/navbar";
 @import "../../src/components/shared/navbar/navbar.animation";
 @import "../../src/components/shared/messagebox/successbox/successbox";
 @import "../../src/components/shared/messagebox/sendtocart/sendtocart.box";
 @import "../../src/components/shared/messagebox/loadingbox/loading";
+@import "../../src/components/shared/messagebox/loadingAddCart/loadingAddCart";
 @import "../../src/components/shared/messagebox/imagebox/imagebox";
 @import "../../src/components/shared/messagebox/errorbox/errorbox";
 @import "../../src/components/shared/messagebox/authentificationbox/authentificationbox";
 @import "../../src/components/shared/footer/footer";
 @import "../../src/components/paiement/commande/commande";
 @import "../../src/components/paiement/cart/cart";
+@import "../../src/components/pages/paiement/paiement";
 @import "../../src/components/pages/home/home";
+@import "../../src/components/pages/backoffice/backoffice";
 @import "../../src/components/item/smallcard/smallcard";
+@import "../../src/components/item/shop/shop";
 @import "../../src/components/item/presentation/presentation";
 @import "../../src/components/item/news/news";
 @import "../../src/components/item/grid/grid";
+@import "../../src/components/item/grid/actions/actions";
 @import "../../src/components/item/card/card";
 
 // Importation des fichiers SCSS des composants :

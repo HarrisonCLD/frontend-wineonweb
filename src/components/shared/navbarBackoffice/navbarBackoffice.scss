@@ -1,16 +1,61 @@
 .navbackoffice {
   z-index: 5;
-  margin-top: 20px;
-  padding: 0px;
+  min-width: 260px;
+  padding: 30px;
   background-color: white;
+  font-family: $font-family-second;
 
   ul {
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    .disconect {
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        @extend %buttonForm;
+      }
+    }
+
+    .section-user,
+    .section-admin {
+      margin: 15px 0px;
+
+      .top {
+        margin-bottom: 5px;
+
+        h4 {
+          font-weight: 400;
+          font-size: 1.1em;
+        }
+      }
+
+      hr {
+        width: 60%;
+        height: 1px;
+        background-color: black;
+        margin-bottom: 5px;
+      }
+    }
 
     li {
+      margin: 5px 0px;
+      padding: 8px 13px;
+      font-size: 0.9em;
       color: black;
-      margin: 0px 20px;
       cursor: pointer;
+
+      &:hover {
+        background-color: #e8e8e8;
+        border-radius: 3px;
+      }
     }
   }
 }

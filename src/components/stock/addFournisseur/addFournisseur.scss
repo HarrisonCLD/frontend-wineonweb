@@ -1,14 +1,8 @@
 .fournisseurForm {
-  @extend %flexCenter;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-grow: 1;
-  width: 80%;
-  margin: 30px 0px 40px 0px;
-  padding: 20px 30px;
-  border: 2px solid black;
-  border-radius: 10px;
+  @extend %formulaireItem;
+  opacity: 0;
+  transform: translateX(500px);
+  animation: apparition 300ms ease-in forwards;
 
   h3 {
     margin: 20px 0px;

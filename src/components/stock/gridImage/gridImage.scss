@@ -1,32 +1,44 @@
-.selected {
-  background-color: #bdbdbd !important;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .viewImage {
+  max-width: 1200px;
   position: absolute;
-  z-index: 6;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
-  grid-auto-rows: minmax(250px, 250px);
-  gap: 15px;
-  height: 90%;
-  width: 90%;
-  padding: 60px 20px 20px 20px;
-  overflow-y: scroll;
+  z-index: 1;
   background-color: white;
-  border: 2px solid #e8e8e8;
-  border-radius: 5px;
+  height: 85%;
+  width: 80%;
+  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  padding: 50px;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 5px;
+  animation: fadeIn 300ms ease-in-out forwards;
+
+  .selected {
+    border: 2px solid $main-color !important;
+  }
 
   button {
     position: absolute;
-    top: 5px;
-    right: 10px;
-    height: 55px;
-    width: 45px;
+    top: 25px;
+    right: 25px;
+    height: 30px;
+    width: 30px;
     background: transparent;
     cursor: pointer;
 
@@ -52,7 +64,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: fit-content;
+    width: 90%;
+    height: 220px;
     background-color: white;
     border: 2px solid #e8e8e8;
     border-radius: 5px;
@@ -63,7 +76,7 @@
     }
 
     img {
-      height: 200px;
+      height: 85%;
     }
   }
 }

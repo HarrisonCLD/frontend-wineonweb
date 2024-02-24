@@ -1,47 +1,46 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { ButtonEvent } from "@rowComponents";
-import { useDispatch } from "react-redux";
 
 import { addtoCart } from "@services/cart.service";
 import { set_view } from "@services/item.service";
 
-export const VSmallCard = (props) => {
+export const VSmallCard = ({ data }) => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="vsmallcard">
-      <img className="item_img" src={props.img} />
-      <h3>{props.nom}</h3>
-      <button>Fiche produit</button>
+    <div className="vsmallcard" onClick={() => dispatch(set_view(data.id))}>
+      <img className="item_img" src={`./src/assets/images/${data.image}.png`} />
+      <h3>{data.nom}</h3>
+      <Link to={`${data.id}`}>Fiche produit</Link>
     </div>
   );
 };
 
 export const SmallCard = ({ data }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [item, setItem] = useState(data);
   const [optionSelected, setOptionSelected] = useState(0);
-
   return (
-    <div className="smallcard" onClick={() => dispatch(set_view(item.id))}>
-      <div className="top">
-        <img
-          className="img"
-          src={`./src/assets/images/${item.image}`}
-          alt={item.nom}
-        />
-      </div>
-      <div className="bot">
-        <h2>{item.nom}</h2>
-        <div className="location">
-          <p>{`${item.id_pays.nom} |`}</p>
-          <p>{item.id_region.nom}</p>
+    <div className="smallcard" onClick={() => dispatch(set_view(data.id))}>
+      <Link to={`${data.id}`} className="link">
+        <div className="top">
+          <img className="img" src={`./src/assets/images/${data.image}.png`} alt={data.nom} />
+          <div className="name">
+            <h2>{data.nom}</h2>
+            <div className="location">
+              <p>{`${data.pays} |`}</p>
+              <p>{data.region}</p>
+            </div>
+          </div>
         </div>
-        <p className="price">{item.prix && item.prix[optionSelected]} €</p>
+      </Link>
+      <div className="bot">
+        <p className="price">{data.prix && data.prix[optionSelected]} €</p>
         <div className="option_attribut">
-          {item.option_attribut &&
-            item.option_attribut.map((row, i) => (
+          {data.option_attribut &&
+            data.option_attribut.map((row, i) => (
               <p
                 key={i}
                 onClick={(e) => {
@@ -61,11 +60,11 @@ export const SmallCard = ({ data }) => {
           e.stopPropagation();
           dispatch(
             addtoCart({
-              id: item.id,
-              image: item.image,
-              nom: item.nom,
-              option_attribut: item.option_attribut[optionSelected],
-              prix: item.prix[optionSelected],
+              id: data.id,
+              image: data.image,
+              nom: data.nom,
+              option_attribut: data.option_attribut[optionSelected],
+              prix: data.prix[optionSelected],
             })
           );
         }}

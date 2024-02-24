@@ -1,24 +1,50 @@
-export default function PresentationShop({ active }) {
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { ButtonEvent } from "@rowComponents";
+
+import { addtoCart } from "@services/cart.service";
+
+export default function PresentationShop({ data }) {
+  const view = useSelector((state) => state.Item.view);
+  const dispatch = useDispatch();
+  const [item, setItem] = useState({});
+
+  useEffect(() => {
+    data.map((row) => row.forward === 1 && setItem(row));
+  }, [data]);
+
   return (
     <>
-      <section className={active ? "presentation wait" : "presentation"}>
+      <section className={view ? "presentation wait" : "presentation"}>
         <div className="page_accueil_column1">
           <h1>Découvrez nos vins</h1>
-          <p>A travers notre catalogue contenant mille références, vous voyagerez à travers le monde et découvrirez de nouvelles saveurs</p>
+          <p>{item.description}</p>
         </div>
         <div className="page_accueil_column2">
-          <h2>FLEURIE DOMAINE PASSOT 2019</h2>
-          <p>
-            Le Domaine Passot est un petit domaine familial de 11 hectares réparti sur 4 crus du Beaujolais ainsi qu’un vin blanc issu du célèbre
-            cépage Viognier. Dominique et Rémy sont issus de vieilles familles vigneronnes et ont à cœur de produire des vins authentiques.
-          </p>
+          <h2>{item.nom}</h2>
+          <p>{item.description}</p>
           <span>
-            9,80€
-            <button>Ajouter au panier</button>
+            <p>{item.prix} €</p>
+            <ButtonEvent
+              onClick={() =>
+                dispatch(
+                  addtoCart({
+                    id: item.id,
+                    image: item.image,
+                    nom: item.nom,
+                    option_attribut: item.option_attribut[0],
+                    prix: item.prix[0],
+                  })
+                )
+              }
+            >
+              Ajouter au panier
+            </ButtonEvent>
           </span>
         </div>
-        <img className="page_accueil_bottle_img" src="./src/assets/images/wine-bottle2.png" />
-        <img className="page_accueil_bg_img" src="./src/assets/images/grape.png" />
+        <img className="page_accueil_bottle_img" src={`./src/assets/images/wine-bottle2.png`} />
+        <img className="page_accueil_bg_img" src="./src/assets/png/grape.png" />
       </section>
     </>
   );

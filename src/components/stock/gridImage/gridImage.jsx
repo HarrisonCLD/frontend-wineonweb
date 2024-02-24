@@ -4,23 +4,18 @@ import Popup from "@components/shared/popup/popup";
 
 import { ButtonEvent, CloseButtonImageGrid } from "@components/shared/rowComponents";
 
-import { get_images } from "@helpers/api/item.api.helper";
+import { get_images } from "@helpers/api/dataform.api.helper";
 
-export default function GridImage({ stateForm, setStateForm, setState }) {
-  const [data, setData] = useState([]);
+export default function GridImage({ data, stateForm, setStateForm, setState }) {
   const [imgSelected, setImgSelected] = useState(null);
-
-  useEffect(() => {
-    get_images(setData);
-  }, []);
-
+  console.log(data);
   return (
     <>
       <div className="viewImage">
         <CloseButtonImageGrid close={setState} />
         {data.map((image, i) => (
-          <div key={i} className={`imagecard ${imgSelected === image.image ? "selected" : ""}`} on onClick={() => setImgSelected(image.image)}>
-            <img src={`../../src/assets/images/${image.image}`} alt="" />
+          <div key={i} className={`imagecard ${imgSelected === image ? "selected" : ""}`} onClick={() => setImgSelected(image)}>
+            <img src={`../../src/assets/images/${image}.png`} alt="" />
           </div>
         ))}
       </div>

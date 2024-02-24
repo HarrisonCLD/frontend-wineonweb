@@ -1,0 +1,27 @@
+@keyframes apparition {
+  0% {
+    opacity: 0;
+    transform: translateX(500px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes fadeInSelectBox {
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    height: fit-content;
+    opacity: 1;
+  }
+}

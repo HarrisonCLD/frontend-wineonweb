@@ -3,18 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 export const itemServices = createSlice({
   name: "item",
   initialState: {
-    view: null,
+    status: "pending",
+    view: false,
     item: {},
   },
 
   reducers: {
-    set_view: (state, data) => {
-      state.view = data.payload;
+    set_view: (state) => {
+      state.view = !state.view;
     },
     set_item: (state, data) => {
       console.log(data.payload);
     },
+    set_status: (state, data) => {
+      state.status = data.payload;
+    },
   },
 });
 
-export const { view, item, set_view, set_items } = itemServices.actions;
+export const { view, item, set_view, set_items, set_status } = itemServices.actions;

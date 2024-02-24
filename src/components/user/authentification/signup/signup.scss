@@ -1,61 +1,257 @@
-// Scss du composant Login :
-.signup {
+.authentification {
   @extend %flexCenter;
-  flex-direction: column;
-  z-index: 2;
-  position: relative;
-  flex-grow: 1;
+  background: radial-gradient(circle, white -1000%, #0b0a09 100%);
+  height: 100%;
   width: 100%;
-  padding-left: 35% !important;
-  padding-right: 35%;
-  gap: 2vh;
-  background: radial-gradient(circle, white -1000%, $primary-color 100%);
 
-  .selection {
-    display: flex;
+  .signup {
+    @extend %flexCenter;
+    max-width: 90%;
     flex-direction: column;
-    width: 100%;
+    justify-content: space-between;
+    padding: 40px 60px 30px 60px;
+    background-color: rgba(0, 0, 0, 0.7);
 
-    label {
-      color: white;
-      font-size: 1.6vh;
-      margin-bottom: 5px;
-      text-transform: capitalize;
-    }
+    .top {
+      width: 100%;
+      margin-bottom: 10px;
 
-    select {
-      padding: 2vh;
-      border-radius: 100vh;
-      background-color: #0b0a09;
+      h3 {
+        font-size: 2em;
+        font-weight: 100;
+        color: #e8e8e8e6;
+      }
 
-      * {
-        color: white;
+      hr {
+        height: 0.5px;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 70%, rgba(0, 0, 0, 1) 100%);
+        width: 70%;
       }
     }
-  }
 
-  input {
-    @extend %inputForm;
-    width: 100%;
+    .bot {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 10px;
 
-    &:focus {
-      border: 1px solid white;
+      .ipt {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          width: 100%;
+        }
+        p {
+          color: #d45555;
+          font-size: 0.7em;
+          padding-left: 15px;
+          padding-top: 2px;
+        }
+      }
+
+      .left {
+        width: 48%;
+      }
+      .right {
+        width: 48%;
+      }
+
+      .left,
+      .right {
+        display: flex;
+        flex-direction: column;
+
+        .look {
+          display: block !important;
+          position: absolute;
+          background: white;
+          width: 100%;
+          height: 0px;
+          left: 0px;
+          top: 40px;
+          border-right: 2px solid white;
+          border-bottom: 2px solid white;
+          border-left: 2px solid white;
+          overflow: hidden;
+          animation: fadeInSelectBox 150ms ease-in forwards;
+        }
+
+        .error {
+          border-radius: 3px 3px 0px 0px;
+          border-bottom: 2px solid #d45555;
+        }
+
+        .select {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid #9b9b9b;
+          background-color: black;
+          font-family: "Raleway", sans-serif;
+
+          input {
+            transition: all 300ms ease-in;
+
+            &::placeholder {
+              text-transform: capitalize;
+            }
+          }
+
+          p {
+            font-size: 0.9em;
+            color: #858585;
+          }
+
+          .top {
+            align-items: center;
+            margin: 0;
+            border-radius: 5px;
+            cursor: pointer;
+
+            input {
+              background-color: transparent;
+              border: none;
+            }
+
+            &:hover {
+              background-color: lighten(black, 10);
+            }
+
+            p {
+              text-transform: capitalize;
+              font-family: "Raleway", sans-serif;
+            }
+
+            img {
+              transform: rotate(-90deg);
+              height: 20px;
+            }
+          }
+
+          .dropdown {
+            display: none;
+            opacity: 0;
+            z-index: 1;
+            max-height: 200px;
+            overflow-y: auto;
+            ul {
+              li {
+                font-size: 0.9em;
+                font-family: "Raleway", sans-serif;
+                color: black !important;
+                padding: 7px 8px;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: #e8e8e8;
+                }
+                &:nth-child(1) {
+                  margin-top: 2px;
+                }
+              }
+            }
+          }
+        }
+
+        div {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        & > * {
+          margin: 10px 0px;
+        }
+      }
     }
-  }
 
-  button {
-    @extend %buttonForm;
-    width: 100%;
-  }
+    input[name="nom"] {
+      width: 49%;
+    }
+    input[name="prenom"] {
+      width: 49%;
+    }
+    input[name="ville"] {
+      width: 49%;
+    }
+    input[name="code_postal"] {
+      width: 49%;
+    }
 
-  p {
-    color: white;
-    a {
-      margin-left: 8px;
-      letter-spacing: 0.6px;
-      background-color: transparent;
-      text-decoration: underline;
-      cursor: pointer;
+    .selection {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      label {
+        color: white;
+        font-size: 1.6vh;
+        margin-bottom: 5px;
+        text-transform: capitalize;
+      }
+
+      select {
+        padding: 1.3vh;
+        border-radius: 5px;
+        border: 1px solid #9b9b9b;
+        background-color: black;
+      }
+    }
+
+    input {
+      @extend %inputForm;
+      padding: 1.3vh;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #9b9b9b;
+      background-color: black;
+      font-family: "Raleway", sans-serif;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .action {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        @extend %buttonForm;
+        width: 50%;
+
+        p {
+          width: 100%;
+          color: white;
+          text-align: center;
+          margin: 0;
+          padding: 5px 0px;
+          font-size: 1.1em;
+        }
+      }
+
+      p {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.9em;
+        font-weight: 200;
+        text-wrap: nowrap;
+        color: rgba(232, 232, 232, 0.9019607843);
+        margin-top: 30px;
+
+        a {
+          margin-top: 10px;
+          margin-left: 6px;
+          letter-spacing: 0.6px;
+          background-color: transparent;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
     }
   }
 }

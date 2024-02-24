@@ -1,42 +1,37 @@
 import { useState } from "react";
+import { useData } from "../../../providers/data.provider";
 
-import { InputForm, ButtonSubmit, Select } from "@rowComponents";
+import { set_fournisseur } from "@helpers/api/dataform.api.helper";
 
-export default function AddFournisseur({ data }) {
-  const [addFournisseur, setAddFournisseur] = useState([]);
+import { InputForm, ButtonEvent, Select } from "@rowComponents";
+
+export default function AddFournisseur() {
+  const { formdata } = useData();
+  const token = localStorage.getItem("token");
+  const [fournisseur, setFournisseur] = useState({});
 
   return (
     <form className="fournisseurForm">
       <h3>Ajouter un Fournisseur</h3>
-      <InputForm
-        setState={setAddFournisseur}
-        state={addFournisseur}
-        placeholder="Nom du fournisseur..."
-        name="nom"
-      />
-      <InputForm
-        setState={setAddFournisseur}
-        state={addFournisseur}
-        placeholder="Adresse du fournisseur..."
-        name="adresse"
-      />
-      <Select name="region" setState={setAddFournisseur} state={addFournisseur}>
-        {data.region.map((region, i) => (
+      <InputForm setState={setFournisseur} state={fournisseur} placeholder="Nom du fournisseur..." name="nom" />
+      <InputForm setState={setFournisseur} state={fournisseur} placeholder="Adresse du fournisseur..." name="adresse" />
+      <Select name="id_region" setState={setFournisseur} state={fournisseur}>
+        {formdata.region.map((region, i) => (
           <option key={i} name="region" value={region.id}>
             {region.nom}
           </option>
         ))}
       </Select>
-      <Select name="pays" setState={setAddFournisseur} state={addFournisseur}>
-        {data.pays.map((pays, i) => (
+      <Select name="id_pays" setState={setFournisseur} state={fournisseur}>
+        {formdata.pays.map((pays, i) => (
           <option key={i} name="pays" value={pays.id}>
             {pays.nom}
           </option>
         ))}
       </Select>
-      <ButtonSubmit>
+      <ButtonEvent onClick={() => set_fournisseur(fournisseur, token)}>
         <p>Ajouter un fournisseur</p>
-      </ButtonSubmit>
+      </ButtonEvent>
     </form>
   );
 }

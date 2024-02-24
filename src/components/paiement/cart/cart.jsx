@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,14 +15,14 @@ export default function Cart() {
 
   return (
     toggleCart && (
-      <div className="cart_content">
+      <div className={cartList.length > 0 ? "cart_content" : "cart_content void"}>
         <ul>
           {cartList.length > 0 ? (
             cartList.map((item) => (
               <li key={item.id}>
                 <p>{item.nom}</p>
                 <div className="qte_box">
-                  <p>{item.contenance}</p>
+                  <p>{item.option_attribut}</p>
                   <p>{item.prix}€</p>
                   <p>{item.quantite}</p>
                   <img src="./src/images/plus-icon.svg" onClick={() => dispatch(increaseItem(item.id))} />
@@ -35,7 +34,9 @@ export default function Cart() {
             <p>Panier vide</p>
           )}
         </ul>
-        <ButtonEvent onClick={() => navigateTo(navigate, "/paiement")}>Paiement</ButtonEvent>
+        <ButtonEvent className={cartList.length > 0 ? "active" : ""} onClick={() => cartList.length > 0 && navigateTo(navigate, "/paiement")}>
+          Paiement
+        </ButtonEvent>
       </div>
     )
   );

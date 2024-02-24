@@ -1,39 +1,250 @@
 .itemForm {
-  @extend %flexCenter;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-grow: 1;
-  width: 80%;
-  margin: 30px 0px 40px 0px;
-  padding: 20px 30px;
-  border: 2px solid black;
-  border-radius: 10px;
+  @extend %formulaireItem;
+  max-width: 1100px;
+  opacity: 0;
+  transform: translateX(500px);
+  animation: apparition 300ms ease-in forwards;
 
-  h3 {
-    margin: 20px 0px;
+  h4 {
+    font-size: 1.1em;
+    font-weight: 200;
+    letter-spacing: 1px;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 5%;
+      background-color: $main-color;
+    }
   }
 
-  input,
-  select {
+  .informations,
+  .provenance,
+  .attribut,
+  .stock {
+    display: grid;
+    gap: 15px;
     width: 100%;
-    margin: 15px 0px;
-    padding: 8px 13px;
-    border: 1px solid #e8e8e8;
+    margin: 20px 0px;
+
+    input,
+    textarea,
+    select {
+      border: 2px solid #e8e8e8;
+      border-radius: 3px;
+      padding: 10px 15px;
+      font-family: $font-family-second;
+    }
+
+    input {
+      &:focus {
+        border: 2px solid $main-color;
+      }
+    }
   }
 
-  .checkbox {
-    display: flex;
-    align-items: center;
+  .informations {
+    grid-template-areas:
+      "informations  informations"
+      "nom reference"
+      "description description";
 
-    label {
-      text-wrap: nowrap;
-      margin-left: 15px;
+    h4 {
+      grid-area: informations;
+    }
+
+    input[name="nom"] {
+      grid-area: nom;
+    }
+    input[name="reference"] {
+      grid-area: reference;
+    }
+    textarea {
+      resize: none;
+      height: 100px;
+      grid-area: description;
+    }
+  }
+
+  .provenance {
+    grid-template-areas:
+      "provenance  provenance"
+      "fournisseur fournisseur"
+      "pays region";
+
+    h4 {
+      grid-area: provenance;
+    }
+
+    div {
+      select {
+        width: 100%;
+      }
+      &:nth-child(2) {
+        grid-area: fournisseur;
+      }
+
+      &:nth-child(3) {
+        grid-area: pays;
+      }
+
+      &:nth-child(4) {
+        grid-area: region;
+      }
+    }
+  }
+  .attribut {
+    grid-template-areas:
+      "attribut  attribut"
+      "categorie attribut2"
+      "optionattribut optionattribut"
+      "prix prix";
+
+    h4 {
+      grid-area: attribut;
+    }
+
+    div {
+      select {
+        width: 100%;
+      }
+      &:nth-child(2) {
+        grid-area: categorie;
+      }
+
+      &:nth-child(3) {
+        grid-area: attribut2;
+      }
+
+      &:nth-child(4) {
+        grid-area: optionattribut;
+      }
+    }
+    input {
+      width: 50%;
+      grid-area: prix;
+    }
+  }
+
+  .stock {
+    grid-template-areas:
+      "stock  stock"
+      "qteStock qteStock"
+      "seuil notif"
+      "checkbox checkbox";
+
+    h4 {
+      grid-area: stock;
+    }
+
+    input[name="qte_stock"] {
+      grid-area: qteStock;
+    }
+
+    input[name="seuil_restocks"] {
+      grid-area: seuil;
+    }
+
+    input[name="seuil_notif"] {
+      grid-area: notif;
+    }
+    .checkbox {
+      grid-area: checkbox;
+
+      input {
+        margin-top: 5px;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .end {
+    display: grid;
+    grid-template-areas:
+      "buttonimg commentaire"
+      "imgpreview commentaire"
+      "imgpreview validation";
+    gap: 15px;
+
+    button[name="image"] {
+      grid-area: buttonimg;
+      width: 40%;
+    }
+
+    button[nom="submitAddItem"] {
+      grid-area: validation;
+    }
+
+    .commentaire {
+      grid-area: commentaire;
+
+      h4 {
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+        border: 2px solid #e8e8e8;
+        border-radius: 3px;
+        padding: 10px 15px;
+        font-family: $font-family-second;
+      }
+    }
+
+    .imgPreview {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 260px;
+      height: 260px;
+      margin: auto;
+      font-size: 0.9em;
+      font-weight: 200;
+      border-radius: 5px;
+      border: 3px solid #e8e8e8;
+      grid-area: imgpreview;
+
+      img {
+        height: 85%;
+      }
+
+      button {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        width: 35px;
+        height: 35px;
+        padding: 0px 0px 0px 4px;
+
+        &:hover {
+          background-color: darken($main-color, 10) !important;
+        }
+
+        .closeLine_1,
+        .closeLine_2 {
+          height: 2px;
+          width: 90%;
+          background-color: white;
+        }
+
+        .closeLine_1 {
+          transform: rotate(-45deg);
+        }
+
+        .closeLine_2 {
+          position: relative;
+          top: -2px;
+          transform: rotate(45deg);
+        }
+      }
     }
   }
 
   button {
     @extend %buttonForm;
-    padding: 1vh 2vh;
+    margin: auto;
   }
 }

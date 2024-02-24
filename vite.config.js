@@ -15,19 +15,11 @@ export default defineConfig({
       "@helpers": path.resolve(__dirname, "src/components/shared/helpers"),
       "@item": path.resolve(__dirname, "src/components/item"),
       "@stock": path.resolve(__dirname, "src/components/stock"),
-      "@authentification": path.resolve(
-        __dirname,
-        "src/components/user/authentification"
-      ),
-      "@rowComponents": path.resolve(
-        __dirname,
-        "src/components/shared/rowComponents"
-      ),
-
-      "@messagebox": path.resolve(
-        __dirname,
-        "src/components/shared/messagebox"
-      ),
+      "@authentification": path.resolve(__dirname, "src/components/user/authentification"),
+      "@rowComponents": path.resolve(__dirname, "src/components/shared/rowComponents"),
+      "@messagebox": path.resolve(__dirname, "src/components/shared/messagebox"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@providers": path.resolve(__dirname, "src/providers"),
     },
   },
 });

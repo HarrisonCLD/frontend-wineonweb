@@ -1,0 +1,71 @@
+.formItem {
+  z-index: 5;
+  flex-grow: 1;
+  padding: 35px 50px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  animation: apparition 300ms ease-in forwards;
+
+  .loading {
+    height: 100%;
+    box-shadow: none !important;
+  }
+
+  .options-data {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+    .switch {
+      ul {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        border: 2px solid $main-color;
+        background-color: $main-color;
+        border-radius: 5px;
+
+        .selection {
+          position: absolute;
+          z-index: 2;
+          width: 130px;
+          height: 33px;
+          background-color: white;
+          border-radius: 3px;
+          transition: transform 300ms ease-in-out;
+        }
+
+        .on {
+          color: $main-color;
+        }
+
+        li {
+          &:hover {
+            background-color: lighten($main-color, 5);
+          }
+
+          button {
+            position: relative;
+            z-index: 3;
+            width: 130px;
+            height: 33px;
+            padding: 7px 8px;
+            font-weight: 500;
+            border-radius: 3px;
+            text-align: center;
+            background-color: black;
+            cursor: pointer;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: white;
+            transition: color 305ms ease-in-out;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

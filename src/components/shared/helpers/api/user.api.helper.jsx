@@ -1,74 +1,58 @@
 import axios from "axios";
+
 import { set_status } from "@services/user.service";
-
-import { navigateTo } from "@helpers/navigation.helper";
-
 import { set_user } from "@services/user.service";
 
 const API = "http://localhost:10051";
 
-export const check_authentification = async (dispatch, navigate, credentials) => {
+export const check_authentification = async (dispatch, credentials, navigate) => {
   try {
-    const response = await axios({
+    await axios({
       method: "post",
       url: `${API}/authentification/signin`,
       data: credentials,
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    localStorage.setItem("token", `Bearer ${response.data.token}`);
-    setTimeout(() => {
+    }).then((res) => {
       dispatch(set_status("success"));
-      setTimeout(() => {
-        navigateTo(navigate, "/personal/info");
-        dispatch(set_status("login"));
-      }, 500);
-    }, 1000);
+      localStorage.setItem("token", `Bearer ${res.data.token}`);
+      navigate("/personal");
+      setTimeout(() => dispatch(set_status("signin")), 700);
+    });
   } catch (error) {
-    setTimeout(() => {
-      dispatch(set_status("error"));
-    }, 1000);
+    console.log(error);
   }
 };
 
-export const set_newuser = async (dispatch, navigate, credentials) => {
+export const set_newuser = async (credentials) => {
   try {
-    const response = await axios({
+    await axios({
       method: "post",
       url: `${API}/authentification/signup`,
       data: credentials,
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    if (response.status === 201) {
-      setTimeout(() => {
-        dispatch(set_status("success"));
-        setTimeout(() => {
-          navigateTo(navigate, "/personal/info");
-        }, 500);
-      }, 1000);
-    }
+    }).then((res) => console.log(res));
   } catch (error) {
-    setTimeout(() => {
-      dispatch(set_status("error"));
-    }, 1000);
+    console.log(error);
   }
 };
 
-export const get_user = async (dispatch, bearer) => {
+export const get_user = async () => {
+  const bearer = localStorage.getItem("token");
   try {
     const response = await axios({
-      method: "get",
-      url: `${API}/authentification/user/profile`,
+      method: "post",
+      url: `${API}/authentification/profile`,
       headers: {
         "Content-Type": "application/json",
         Authorization: bearer,
       },
     });
-    dispatch(set_user(response.data[0]));
+    return response.data;
   } catch (error) {
-    dispatch(set_status("error"));
+    console.log(error);
   }
 };

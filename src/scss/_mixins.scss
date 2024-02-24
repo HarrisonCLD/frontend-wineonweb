@@ -27,8 +27,37 @@
   color: white;
   background-color: $main-color;
   transition: all 250ms ease-in-out;
+  font-family: "Raleway", sans-serif;
 
   &:hover {
     background-color: $main-color-darken;
+  }
+}
+
+%formulaireItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 25px 80px;
+  border: 2px solid #e8e8e8;
+  border-radius: 3px;
+  font-family: $font-family-second;
+
+  h3 {
+    padding-left: 10px;
+    color: $main-color;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 0 !important;
+  }
+
+  hr {
+    width: 15%;
+    height: 1px;
+    margin: 4px 0px 20px 0px;
+    border: none;
+    background-color: $main-color;
   }
 }

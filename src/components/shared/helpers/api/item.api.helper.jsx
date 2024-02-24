@@ -1,99 +1,30 @@
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 
+import { fetchData, setData } from "./dataform.api.helper";
+
 const API = "http://localhost:10051";
 
-export const get_items = async (setState) => {
-  try {
-    const response = await axios({
-      method: "get",
-      url: `${API}/items`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setState(response.data);
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+// GETTER
+export const get_item = async (id, setState) => {
+  axios({
+    method: "get",
+    url: `${API}/items/${id}`,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => setState(response.data));
+};
+
+export const get_items = async () => {
+  return fetchData("/items/all");
 };
 
 export const get_items_stock = async (setState, bearer) => {
-  try {
-    const response = await axios({
-      method: "get",
-      url: `${API}/items`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: bearer,
-      },
-    });
-    setState(response.data);
-  } catch (error) {
-    return <Navigate to={"/"} />;
-  }
+  fetchData("/items/private/items", setState, bearer);
 };
 
-export const get_images = async (setState) => {
-  try {
-    const response = await axios({
-      method: "get",
-      url: `${API}/dataform/images`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setState(response.data);
-  } catch (error) {
-    return <Navigate to={"/"} />;
-  }
-};
-
-export const set_categorie = async (data, bearer) => {
-  try {
-    const response = await axios({
-      method: "post",
-      url: `${API}/items/categorie`,
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: bearer,
-      },
-    });
-  } catch (error) {
-    return <Navigate to={"/"} />;
-  }
-};
-
-export const set_attribut = async (data, bearer) => {
-  try {
-    const response = await axios({
-      method: "post",
-      url: `${API}/items/attribut`,
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: bearer,
-      },
-    });
-  } catch (error) {
-    return <Navigate to={"/"} />;
-  }
-};
-
-export const set_optionAttribut = async (data, bearer) => {
-  try {
-    const response = await axios({
-      method: "post",
-      url: `${API}/items/optionattribut`,
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: bearer,
-      },
-    });
-  } catch (error) {
-    return <Navigate to={"/"} />;
-  }
+// SETTER
+export const set_item = async (state, bearer) => {
+  setData("/items/add", state, bearer);
 };

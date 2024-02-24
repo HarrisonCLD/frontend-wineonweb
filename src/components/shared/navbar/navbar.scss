@@ -23,7 +23,27 @@ nav {
     align-items: center;
     gap: 2vh;
 
-    & > button:nth-child(1) {
+    button {
+      position: relative;
+      height: 30px;
+      width: 30px;
+      margin-top: 5px;
+      background-color: transparent;
+      cursor: pointer;
+
+      .back_icon_cart {
+        position: absolute;
+        top: -8px;
+        right: -3px;
+        color: white;
+
+        p {
+          color: $main-color;
+        }
+      }
+    }
+
+    & > a:nth-child(1) {
       position: relative;
       margin-top: 10px;
       color: white;
@@ -59,7 +79,7 @@ nav {
       }
     }
 
-    & > button:nth-child(2) {
+    & > a:nth-child(2) {
       @extend %buttonForm;
       margin-left: 1vw;
       display: flex;
@@ -68,6 +88,11 @@ nav {
       img {
         width: 3vh;
         height: 3vh;
+      }
+
+      p {
+        font-size: 0.9em;
+        margin-left: 10px;
       }
     }
   }

@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { VSmallCard } from "@components/item/smallcard";
+import { useData } from "../../../providers/data.provider";
 
-export default function NewsItems({ data, active }) {
-  const [newsItems, setNewsItems] = useState([]);
-
-  useEffect(() => {
-    setNewsItems(data.slice(0, 15));
-  }, [data]);
+export default function NewsItems() {
+  const view = useSelector((state) => state.Item.view);
+  const { items } = useData();
 
   return (
-    <section className={active ? "news wait" : "news"}>
+    <section className={view ? "news wait" : "news"}>
       <h2>Nouveaux arrivages</h2>
       <div className="items_scroll">
-        {newsItems.map((item, i) => (
-          <VSmallCard key={i} img={`./src/assets/images/${item.image}`} nom={item.nom} />
+        {items.map((item, i) => (
+          <VSmallCard key={i} data={item} />
         ))}
       </div>
     </section>

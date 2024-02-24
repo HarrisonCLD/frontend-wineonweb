@@ -1,0 +1,39 @@
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: fit-content;
+  padding: 15px 30px 10px 30px;
+  border: 2px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
+
+  p {
+    color: black;
+    font-size: 1em;
+    line-height: 1.7em;
+    font-weight: 300;
+    margin-bottom: 10px;
+    span {
+      color: $main-color;
+      font-weight: 600;
+    }
+  }
+  input {
+    width: 100%;
+    padding: 7px 15px;
+    font-size: 0.9em;
+    border: 2px solid #e8e8e8;
+    border-radius: 3px;
+
+    &:focus {
+      border: 2px solid #aaaaaa;
+    }
+  }
+
+  button {
+    @extend %buttonForm;
+    margin: 12px 0px;
+  }
+}

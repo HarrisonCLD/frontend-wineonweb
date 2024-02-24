@@ -1,38 +1,61 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-import { navigateTo } from "@helpers/navigation.helper";
-import { useEffect } from "react";
+import { ButtonEvent } from "@rowComponents";
 
-export default function NavbarBackoffice({ authorization }) {
+import { set_status } from "@services/user.service";
+import { useData } from "../../../providers/data.provider";
+
+export default function NavbarBackoffice() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const role = authorization?.id_role?.id;
+  const { informations } = useData();
+
+  const disconect = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      dispatch(set_status(""));
+      navigate("/");
+    } else {
+      dispatch(set_status(""));
+      localStorage.removeItem("token");
+      navigate("/");
+    }
+  };
 
   return (
-    <nav className="navbackoffice">
+    <div className="navbackoffice">
       <ul>
-        <li>
-          <a onClick={() => navigateTo(navigate, "/personal/info")}>Informations</a>
-        </li>
-        <li>
-          <a onClick={() => navigateTo(navigate, "/personal/commande")}>Commande</a>
-        </li>
-        {role === 1 && (
-          <>
+        <section className="section-user">
+          <div className="top">
+            <h4>Informations utilisateur</h4>
+            <hr />
+          </div>
+          <li>
+            <Link to={"/personal"}>Informations</Link>
+          </li>
+          <li>
+            <Link to={"/personal/commande"}>Commandes</Link>
+          </li>
+        </section>
+        {informations.role === 1 && (
+          <section className="section-admin">
+            <div className="top">
+              <h4>Gestion administrateur</h4>
+              <hr />
+            </div>
             <li>
-              <a onClick={() => navigateTo(navigate, "/personal/back/item")}>Item</a>
+              <Link to={"/personal/produit"}>Gérer les produits</Link>
             </li>
             <li>
-              <a onClick={() => navigateTo(navigate, "/personal/back/settings")}>Paramètre produit</a>
+              <Link to={"/personal/stock"}>Liste des produits</Link>
             </li>
-            <li>
-              <a onClick={() => navigateTo(navigate, "/personal/back/fournisseur")}>Fournisseur</a>
-            </li>
-            <li>
-              <a onClick={() => navigateTo(navigate, "/personal/back/liststock")}>Liste Produits</a>
-            </li>
-          </>
+          </section>
         )}
+        <li className="disconect">
+          <ButtonEvent onClick={() => disconect()}>Déconexion</ButtonEvent>
+        </li>
       </ul>
-    </nav>
+    </div>
   );
 }

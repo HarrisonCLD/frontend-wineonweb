@@ -1,8 +1,7 @@
-export default function IsLoading({ status }) {
+export default function IsLoading() {
   return (
     <>
       <div className="loading">
-        <p>{status}</p>
         <div className="lds-roller">
           <div></div>
           <div></div>

@@ -1,13 +1,35 @@
 .popup {
+  display: flex;
+  align-items: center;
   position: absolute;
-  z-index: 7;
-  bottom: 20px;
-  padding: 20px;
-  background-color: #b6b6b6;
+  z-index: 1;
+  bottom: 30px;
+  padding: 20px 45px;
+  border-radius: 5px;
+  background-color: rgba(209, 72, 77, 0.9);
+  left: 50%;
+  transform: translateX(-50%);
+
+  p {
+    color: white;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
 
   button {
     @extend %buttonForm;
-    margin-top: 10px;
+    background-color: white;
+    margin-left: 20px;
     cursor: pointer;
+
+    p {
+      font-size: 1em;
+      font-weight: 500;
+      color: $main-color;
+    }
+
+    &:hover {
+      background-color: #e8e8e8;
+    }
   }
 }

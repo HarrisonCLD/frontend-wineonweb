@@ -13,6 +13,7 @@ export const userServices = createSlice({
       state.status = data.payload;
     },
     set_user: (state, data) => {
+      console.log(data.payload);
       state.user = data.payload;
     },
 
