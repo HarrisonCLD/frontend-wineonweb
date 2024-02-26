@@ -30,15 +30,6 @@
   }
 }
 
-@keyframes pending {
-  0% {
-    background-color: transparent;
-  }
-  100% {
-    background-color: black;
-  }
-}
-
 .waiting-auth {
   z-index: 10;
   position: absolute;
@@ -47,7 +38,6 @@
   height: 100vh;
   @extend %flexCenter;
   background-color: transparent;
-  animation: pending 600ms forwards;
 
   h2 {
     color: white;

@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.authentification .signin img input, .authentification .signin input, .authentification .signup input {
+.authentification .signin img input, .authentification .signin input, .authentification img input, .authentification .signup input {
   padding: 2vh;
   border-radius: 100vh;
   background-color: #0b0a09;
@@ -73,6 +73,14 @@
   }
   100% {
     height: fit-content;
+    opacity: 1;
+  }
+}
+@keyframes fadeInClassic {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
@@ -196,7 +204,9 @@
   width: 100%;
 }
 .authentification .signup {
-  max-width: 90%;
+  width: 90%;
+  min-width: 590px;
+  max-width: 650px;
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 60px 30px 60px;
@@ -235,6 +245,8 @@
   font-size: 0.7em;
   padding-left: 15px;
   padding-top: 2px;
+  opacity: 0;
+  animation: fadeInClassic 400ms ease-in forwards;
 }
 .authentification .signup .bot .left {
   width: 48%;
@@ -424,6 +436,22 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.authentification img {
+  position: absolute;
+  z-index: 1;
+  width: 35vh;
+  height: 35vh;
+  opacity: 0.1;
+}
+.authentification .login-page-image1 {
+  bottom: 10vh;
+  right: 10vh;
+  transform: rotate(200deg);
+}
+.authentification .login-page-image2 {
+  top: 15vh;
+  left: 10vh;
+}
 
 .authentification {
   background: radial-gradient(circle, white -1000%, #0b0a09 100%);
@@ -453,11 +481,21 @@
   background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 70%, rgb(0, 0, 0) 100%);
   width: 70%;
 }
+.authentification .signin .invalid input {
+  border: 1px solid red;
+}
 .authentification .signin .bot {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+.authentification .signin .bot .error {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: red;
+  opacity: 0;
+  animation: fadeInClassic 300ms ease-in forwards;
 }
 .authentification .signin .bot div {
   display: flex;
@@ -1558,14 +1596,6 @@ nav .menu > a:nth-child(2) p {
     box-shadow: inset 0px 0px 0px 30px #4bb71b;
   }
 }
-@keyframes pending {
-  0% {
-    background-color: transparent;
-  }
-  100% {
-    background-color: black;
-  }
-}
 .waiting-auth {
   z-index: 10;
   position: absolute;
@@ -1573,7 +1603,6 @@ nav .menu > a:nth-child(2) p {
   width: 100vw;
   height: 100vh;
   background-color: transparent;
-  animation: pending 600ms forwards;
 }
 .waiting-auth h2 {
   color: white;

@@ -1,3 +1,3 @@
-export default function Commande({ authorization }) {
+export default function Commande() {
   return;
 }

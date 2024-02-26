@@ -2,16 +2,12 @@ import IsLoading from "../loadingbox/loading";
 import Success from "../successbox/successbox";
 import AlertBox from "../errorbox/errorbox";
 
-export default function AuthentificationBox({ setStatus }) {
+export default function AuthentificationBox(state) {
+  console.log(state);
   return (
     <div className="waiting-auth">
-      {setStatus === "pending" && <IsLoading />}
-      {setStatus === "success" && <Success />}
-      {setStatus === "error" && (
-        <AlertBox
-          message={"Erreur lors de l'authentification, veuillez réessayer plus tard."}
-        />
-      )}
+      {state.state.status === "pending" && <IsLoading />}
+      {state.state.status === "success" && <Success />}
     </div>
   );
 }

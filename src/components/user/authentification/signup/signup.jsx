@@ -7,7 +7,6 @@ import AuthentificationBox from "@messagebox/authentificationbox";
 
 import { set_status } from "@services/user.service";
 
-import { navigateTo } from "@helpers/navigation.helper";
 import { set_newuser } from "@helpers/api/user.api.helper";
 
 import { useData } from "../../../../providers/data.provider";
@@ -29,7 +28,7 @@ export default function SignUp() {
 
   return (
     <div className="authentification">
-      {loading && <AuthentificationBox setStatus={loading} />}
+      {loading.status && <AuthentificationBox setStatus={loading} />}
       <form className="signup">
         <div className="top">
           <h3>Inscription</h3>
@@ -62,10 +61,12 @@ export default function SignUp() {
         <div className="action">
           <ButtonEvent children={<p>S'inscrire</p>} onClick={() => set_signup()} />
           <p>
-            Vous possédez déjà un compte ?<a onClick={() => navigateTo(navigate, "/signin")}>se connecter</a>
+            Vous possédez déjà un compte ?<a onClick={() => navigate("/signin")}>se connecter</a>
           </p>
         </div>
       </form>
+      <img className="login-page-image1" src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png" alt="Login image 1" />
+      <img className="login-page-image2" src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png" alt="Login image 2" />
     </div>
   );
 }

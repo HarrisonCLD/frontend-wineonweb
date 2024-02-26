@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { set_status } from "@services/user.service";
-import { set_user } from "@services/user.service";
 
 const API = "http://localhost:10051";
 
@@ -15,13 +14,20 @@ export const check_authentification = async (dispatch, credentials, navigate) =>
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      dispatch(set_status("success"));
-      localStorage.setItem("token", `Bearer ${res.data.token}`);
-      navigate("/personal");
-      setTimeout(() => dispatch(set_status("signin")), 700);
+      console.log(res);
+      if (res && res.status === 202) {
+        dispatch(set_status({ status: "success" }));
+        localStorage.setItem("token", `Bearer ${res.data.token}`);
+        navigate("/personal");
+        setTimeout(() => dispatch(set_status("")), 600);
+      } else if (res && res.data.message === "Données invalides !") {
+        dispatch(set_status({ status: "error", message: "Nom de compte ou mot de passe invalide" }));
+      } else {
+        dispatch(set_status({ status: "error", message: "Une erreur est survenue" }));
+      }
     });
   } catch (error) {
-    console.log(error);
+    dispatch(set_status("error"));
   }
 };
 

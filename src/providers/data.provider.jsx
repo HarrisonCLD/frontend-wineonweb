@@ -9,7 +9,6 @@ export const DataProvider = ({ children }) => {
   const [formdata, setFormdata] = useState({});
   const [items, setItems] = useState([]);
   const [informations, setInformations] = useState([]);
-  const [status, setStatus] = useState(true);
 
   const setInformationsData = (data) => {
     setInformations(data);
@@ -21,10 +20,6 @@ export const DataProvider = ({ children }) => {
 
   const setFormData = (data) => {
     setFormdata(data);
-  };
-
-  const SetStatus = () => {
-    setStatus(!status);
   };
 
   const get_dataform = () => {
@@ -41,7 +36,7 @@ export const DataProvider = ({ children }) => {
   }, [informations]);
 
   return (
-    <DataContext.Provider value={{ items, setItemsData, formdata, informations, setInformationsData, setFormData, status, SetStatus, get_dataform }}>
+    <DataContext.Provider value={{ items, setItemsData, formdata, informations, setInformationsData, setFormData, get_dataform }}>
       {children}
     </DataContext.Provider>
   );

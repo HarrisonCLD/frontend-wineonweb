@@ -12,42 +12,23 @@ import { useData } from "../../../providers/data.provider";
 
 export default function Home() {
   const { product, data } = useLoaderData();
-  const { status, setItemsData, setFormData, SetStatus } = useData();
+  const { setItemsData, setFormData } = useData();
   const cart = useSelector((state) => state.Cart.show);
 
-  // useEffect(() => {
-  //   setItemsData(product);
-  // }, [product]);
-
-  // useEffect(() => {
-  //   setFormData(data);
-  // }, [data]);
-
   useEffect(() => {
-    product.then((res) => {
-      setItemsData(res);
-      SetStatus();
-    });
-  }, [product]);
-
-  useEffect(() => {
-    data.then((res) => setFormData(res));
-    SetStatus();
-  }, [data]);
+    setItemsData(product);
+    setFormData(data);
+  }, [product, data]);
 
   return (
     <>
-      {status ? (
-        <IsLoading />
-      ) : (
-        <main className="home">
-          <Navbar />
-          {cart && <Cart />}
-          <Suspense fallback={<IsLoading />}>
-            <Await resolve={(product, data)}>{() => <div className="content">{<Outlet />}</div>}</Await>
-          </Suspense>
-        </main>
-      )}
+      <main className="home">
+        <Navbar />
+        {cart && <Cart />}
+        <Suspense fallback={<IsLoading />}>
+          <Await resolve={(product, data)}>{() => <div className="content">{<Outlet />}</div>}</Await>
+        </Suspense>
+      </main>
     </>
   );
 }

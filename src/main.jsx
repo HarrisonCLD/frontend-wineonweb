@@ -62,9 +62,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    loader: () => {
-      let product = get_items();
-      let data = get_data_signup();
+    loader: async () => {
+      let product = await get_items();
+      let data = await get_data_signup();
       return defer({ product, data });
     },
     children: [

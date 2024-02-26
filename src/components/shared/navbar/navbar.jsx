@@ -8,7 +8,7 @@ import { showCart } from "../../../services/cart.service";
 export default function Navbar() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.Cart.items);
-  const status = useSelector((state) => state.User.status);
+  const status = useSelector((state) => state.User.status.status);
   return (
     <nav>
       <div className="logo">

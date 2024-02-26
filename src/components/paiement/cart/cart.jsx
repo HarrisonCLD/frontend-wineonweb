@@ -25,8 +25,8 @@ export default function Cart() {
                   <p>{item.option_attribut}</p>
                   <p>{item.prix}€</p>
                   <p>{item.quantite}</p>
-                  <img src="./src/images/plus-icon.svg" onClick={() => dispatch(increaseItem(item.id))} />
-                  <img src="./src/images/minus-icon.svg" onClick={() => dispatch(decreaseItem(item.id))} />
+                  <img src="./src/assets/images/minus-icon.svg" onClick={() => dispatch(decreaseItem(item.id))} />
+                  <img src="./src/assets/images/plus-icon.svg" onClick={() => dispatch(increaseItem(item.id))} />
                 </div>
               </li>
             ))

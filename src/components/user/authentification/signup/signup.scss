@@ -6,7 +6,9 @@
 
   .signup {
     @extend %flexCenter;
-    max-width: 90%;
+    width: 90%;
+    min-width: 590px;
+    max-width: 650px;
     flex-direction: column;
     justify-content: space-between;
     padding: 40px 60px 30px 60px;
@@ -48,6 +50,8 @@
           font-size: 0.7em;
           padding-left: 15px;
           padding-top: 2px;
+          opacity: 0;
+          animation: fadeInClassic 400ms ease-in forwards;
         }
       }
 
@@ -253,5 +257,24 @@
         }
       }
     }
+  }
+  img {
+    position: absolute;
+    z-index: 1;
+    width: 35vh;
+    height: 35vh;
+    opacity: 0.1;
+    input {
+      @extend %inputForm;
+    }
+  }
+  .login-page-image1 {
+    bottom: 10vh;
+    right: 10vh;
+    transform: rotate(200deg);
+  }
+  .login-page-image2 {
+    top: 15vh;
+    left: 10vh;
   }
 }
