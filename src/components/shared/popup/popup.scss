@@ -8,7 +8,9 @@
   border-radius: 5px;
   background-color: rgba(209, 72, 77, 0.9);
   left: 50%;
-  transform: translateX(-50%);
+  opacity: 0;
+  transform: translateX(-50%), translateY(200px);
+  animation: fadeInValidationCartPopup 300ms ease-in forwards;
 
   p {
     color: white;

@@ -27,8 +27,6 @@ export default function InformationsUser() {
           <p>{informations.code_postal}</p>
           <span>Ville :</span>
           <p>{informations.ville}</p>
-          <span>Région :</span>
-          <p>{informations.region}</p>
           <span>Pays :</span>
           <p>{informations.pays}</p>
         </div>

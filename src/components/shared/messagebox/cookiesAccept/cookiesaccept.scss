@@ -1,0 +1,70 @@
+.bg-cookies {
+  position: absolute;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cookies-accept {
+  @extend %flexCenter;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 8;
+  padding: 40px 30px;
+  background-color: white;
+
+  p {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 0.8em;
+    font-weight: 300;
+  }
+
+  .top {
+    @extend %flexCenter;
+    justify-content: space-between;
+    width: 95%;
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 1.2em;
+      color: $main-color;
+    }
+
+    a {
+      color: black;
+      transition: all 200ms ease-in;
+
+      &:hover {
+        color: rgb(0, 0, 198);
+      }
+    }
+  }
+
+  .bot {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+
+    button:nth-child(1) {
+      color: black;
+      border: none;
+      background: none;
+      transition: all 200ms ease-in;
+
+      &:hover {
+        color: rgb(0, 0, 198);
+      }
+    }
+
+    button {
+      @extend %buttonForm;
+      padding: 8px 15px;
+      margin: 0 10px;
+    }
+  }
+}

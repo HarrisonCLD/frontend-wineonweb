@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { ButtonEvent } from "@rowComponents";
 
 import { addtoCart } from "@services/cart.service";
+import { sendtocart } from "@helpers/cart.helper";
 
 export default function PresentationShop({ data }) {
   const view = useSelector((state) => state.Item.view);
   const dispatch = useDispatch();
   const [item, setItem] = useState({});
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     data.map((row) => row.forward === 1 && setItem(row));
@@ -28,15 +30,14 @@ export default function PresentationShop({ data }) {
             <p>{item.prix} €</p>
             <ButtonEvent
               onClick={() =>
-                dispatch(
-                  addtoCart({
-                    id: item.id,
-                    image: item.image,
-                    nom: item.nom,
-                    option_attribut: item.option_attribut[0],
-                    prix: item.prix[0],
-                  })
-                )
+                sendtocart(dispatch, setStatus, {
+                  id: item.id,
+                  image: item.image,
+                  nom: item.nom,
+                  option_attribut: item.option_attribut[0],
+                  prix: item.prix[0],
+                  stock: item.stock,
+                })
               }
             >
               Ajouter au panier

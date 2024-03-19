@@ -8,7 +8,8 @@ import { showCart } from "../../../services/cart.service";
 export default function Navbar() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.Cart.items);
-  const status = useSelector((state) => state.User.status.status);
+  const status = useSelector((state) => state.User.status);
+
   return (
     <nav>
       <div className="logo">
@@ -51,8 +52,8 @@ export default function Navbar() {
             <p>{cart.length}</p>
           </div>
         </ButtonEvent>
-        <Link to={status === "signin" ? "/personal" : "signup"}>
-          <img src="./src/assets/png/icn-mon-compte.png" alt="#" />
+        <Link to={status.status === "signin" ? "/personal" : "signup"}>
+          <img src="http://localhost:5173/src/assets/png/icn-mon-compte.png" alt="#" />
           <p>Mon compte</p>
         </Link>
       </div>

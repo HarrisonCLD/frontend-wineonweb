@@ -1,4 +1,7 @@
-.itemcard .right .bot .options ul li, .itemcard .loading, .waiting-auth, nav .menu > a:nth-child(1) .back_icon_cart, .authentification .signin, .authentification .signup, .authentification, .user {
+.itemcard .right .bot .options ul li, .itemcard .loading, .paiement .buying .choice-paiement .visa,
+.paiement .buying .choice-paiement .paypal, .paiement .buying .choice-paiement, .paiement .cartlist ul .product .right .inbuy p, .paiement .cartlist ul .product, .paiement-form form .order-number .name-card,
+.paiement-form form .order-number .address-order,
+.paiement-form form .order-number .number, .paiement-form form .order-number, .paiement-form form, .paiement-form, .waiting-auth, .confirm-age, .cookies-accept .top, .cookies-accept, nav .menu > a:nth-child(1) .back_icon_cart, .authentification .signin, .authentification .signup, .authentification, .user {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +14,7 @@
   color: white;
 }
 
-.itemcard .right .bot button, .grid .options .sort .filterPer div:nth-child(1), .grid .options .sort button, .grid .options .actions .flags, .presentation .page_accueil_column2 span button, .vsmallcard a, .paiement .configPaiement form button, .cart_content a, .waiting-auth .alert button, nav .menu > a:nth-child(2), .navbackoffice ul .disconect button, .newsletter button, .popup button, .attributForm button, .categorieForm button, .fournisseurForm button, .itemForm button, .optionAttributForm button, .authentification .signin button, .authentification .signup .action button {
+.itemcard .right .bot button, .grid .options .sort .filterPer div:nth-child(1), .grid .options .sort button, .grid .options .actions .flags, .presentation .page_accueil_column2 span button, .vsmallcard a, .paiement .buying button, .cart_content a, .paiement-form form .order-number button, .confirm-age .bot button, .cookies-accept .bot button, .waiting-auth .alert button, nav .menu > a:nth-child(2), .navbackoffice ul .disconect button, .newsletter button, .popup button, .attributForm button, .categorieForm button, .fournisseurForm button, .itemForm button, .optionAttributForm button, .authentification .signin button, .authentification .signup .action button {
   padding: 0.7vh 1.5vh;
   border-radius: 3px;
   cursor: pointer;
@@ -20,7 +23,7 @@
   transition: all 250ms ease-in-out;
   font-family: "Raleway", sans-serif;
 }
-.itemcard .right .bot button:hover, .grid .options .sort .filterPer div:hover:nth-child(1), .grid .options .sort button:hover, .grid .options .actions .flags:hover, .presentation .page_accueil_column2 span button:hover, .vsmallcard a:hover, .paiement .configPaiement form button:hover, .cart_content a:hover, .waiting-auth .alert button:hover, nav .menu > a:hover:nth-child(2), .navbackoffice ul .disconect button:hover, .newsletter button:hover, .popup button:hover, .attributForm button:hover, .categorieForm button:hover, .fournisseurForm button:hover, .itemForm button:hover, .optionAttributForm button:hover, .authentification .signin button:hover, .authentification .signup .action button:hover {
+.itemcard .right .bot button:hover, .grid .options .sort .filterPer div:hover:nth-child(1), .grid .options .sort button:hover, .grid .options .actions .flags:hover, .presentation .page_accueil_column2 span button:hover, .vsmallcard a:hover, .paiement .buying button:hover, .cart_content a:hover, .paiement-form form .order-number button:hover, .confirm-age .bot button:hover, .cookies-accept .bot button:hover, .waiting-auth .alert button:hover, nav .menu > a:hover:nth-child(2), .navbackoffice ul .disconect button:hover, .newsletter button:hover, .popup button:hover, .attributForm button:hover, .categorieForm button:hover, .fournisseurForm button:hover, .itemForm button:hover, .optionAttributForm button:hover, .authentification .signin button:hover, .authentification .signup .action button:hover {
   background-color: rgba(210, 37, 44, 0.7);
 }
 
@@ -84,6 +87,19 @@
     opacity: 1;
   }
 }
+@keyframes fadeInValidationCartPopup {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 .user {
   flex-direction: column;
   justify-content: flex-start;
@@ -129,7 +145,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 10px;
+  margin: 10px 0px;
 }
 .user .personel .naissance span,
 .user .personel .address span,
@@ -155,6 +171,7 @@
 .user .status {
   display: flex;
   align-items: center;
+  margin: 10px 0px;
 }
 .user .status span {
   margin: 5px 10px 5px 0px;
@@ -203,7 +220,11 @@
   height: 100%;
   width: 100%;
 }
+.authentification .popup {
+  z-index: 4;
+}
 .authentification .signup {
+  z-index: 2;
   width: 90%;
   min-width: 590px;
   max-width: 650px;
@@ -438,7 +459,7 @@
 }
 .authentification img {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   width: 35vh;
   height: 35vh;
   opacity: 0.1;
@@ -839,6 +860,98 @@
   width: 5%;
   background-color: #d1484d;
 }
+.itemForm .ipt {
+  width: 100%;
+}
+.itemForm .provenance .select,
+.itemForm .attribut .select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid #e8e8e8;
+  font-family: "Raleway", sans-serif;
+}
+.itemForm .provenance .select input,
+.itemForm .attribut .select input {
+  transition: all 300ms ease-in;
+}
+.itemForm .provenance .select input::placeholder,
+.itemForm .attribut .select input::placeholder {
+  text-transform: capitalize;
+}
+.itemForm .provenance .select p,
+.itemForm .attribut .select p {
+  font-size: 0.9em;
+  color: #858585;
+}
+.itemForm .provenance .select .top,
+.itemForm .attribut .select .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.itemForm .provenance .select .top input,
+.itemForm .attribut .select .top input {
+  background-color: transparent;
+  border: none;
+}
+.itemForm .provenance .select .top:hover,
+.itemForm .attribut .select .top:hover {
+  background-color: whitesmoke;
+}
+.itemForm .provenance .select .top p,
+.itemForm .attribut .select .top p {
+  text-transform: capitalize;
+  font-family: "Raleway", sans-serif;
+}
+.itemForm .provenance .select .top img,
+.itemForm .attribut .select .top img {
+  transform: rotate(-90deg);
+  height: 20px;
+  margin-right: 15px;
+}
+.itemForm .provenance .select .look,
+.itemForm .attribut .select .look {
+  display: block !important;
+  position: absolute;
+  background: white;
+  width: 100%;
+  height: 0px;
+  left: 0px;
+  top: 40px;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  animation: fadeInSelectBox 150ms ease-in forwards;
+}
+.itemForm .provenance .select .dropdown,
+.itemForm .attribut .select .dropdown {
+  display: none;
+  opacity: 0;
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.itemForm .provenance .select .dropdown ul li,
+.itemForm .attribut .select .dropdown ul li {
+  font-size: 0.9em;
+  font-family: "Raleway", sans-serif;
+  color: black !important;
+  padding: 7px 8px;
+  cursor: pointer;
+}
+.itemForm .provenance .select .dropdown ul li:hover,
+.itemForm .attribut .select .dropdown ul li:hover {
+  background-color: #e8e8e8;
+}
+.itemForm .provenance .select .dropdown ul li:nth-child(1),
+.itemForm .attribut .select .dropdown ul li:nth-child(1) {
+  margin-top: 2px;
+}
 .itemForm .informations,
 .itemForm .provenance,
 .itemForm .attribut,
@@ -860,6 +973,7 @@
 .itemForm .stock input,
 .itemForm .stock textarea,
 .itemForm .stock select {
+  width: 100%;
   border: 2px solid #e8e8e8;
   border-radius: 3px;
   padding: 10px 15px;
@@ -925,7 +1039,6 @@
   grid-area: optionattribut;
 }
 .itemForm .attribut input {
-  width: 50%;
   grid-area: prix;
 }
 .itemForm .stock {
@@ -945,10 +1058,16 @@
 }
 .itemForm .stock .checkbox {
   grid-area: checkbox;
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  margin: 10px 0px;
 }
 .itemForm .stock .checkbox input {
-  margin-top: 5px;
   margin-right: 15px;
+}
+.itemForm .stock .checkbox label {
+  text-wrap: nowrap;
 }
 .itemForm .end {
   display: grid;
@@ -1086,7 +1205,9 @@
   border-radius: 5px;
   background-color: rgba(209, 72, 77, 0.9);
   left: 50%;
-  transform: translateX(-50%);
+  opacity: 0;
+  transform: translateX(-50%), translateY(200px);
+  animation: fadeInValidationCartPopup 300ms ease-in forwards;
 }
 .popup p {
   color: white;
@@ -1112,14 +1233,11 @@
   flex-direction: column;
   align-items: flex-start;
   height: fit-content;
-  padding: 15px 30px 10px 30px;
-  border: 2px solid #e8e8e8;
   border-radius: 3px;
-  background-color: white;
   font-family: "Raleway", sans-serif;
 }
 .newsletter p {
-  color: black;
+  color: white;
   font-size: 1em;
   line-height: 1.7em;
   font-weight: 300;
@@ -1570,6 +1688,112 @@ nav .menu > a:nth-child(2) p {
   font-weight: 700;
   text-align: center;
 }
+.bg-cookies {
+  position: absolute;
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cookies-accept {
+  flex-direction: column;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 8;
+  padding: 40px 30px;
+  background-color: white;
+}
+.cookies-accept p {
+  width: 100%;
+  margin: 5px 0;
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.cookies-accept .top {
+  justify-content: space-between;
+  width: 95%;
+  margin-bottom: 20px;
+}
+.cookies-accept .top h4 {
+  font-size: 1.2em;
+  color: #d1484d;
+}
+.cookies-accept .top a {
+  color: black;
+  transition: all 200ms ease-in;
+}
+.cookies-accept .top a:hover {
+  color: rgb(0, 0, 198);
+}
+.cookies-accept .bot {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+.cookies-accept .bot button:nth-child(1) {
+  color: black;
+  border: none;
+  background: none;
+  transition: all 200ms ease-in;
+}
+.cookies-accept .bot button:nth-child(1):hover {
+  color: rgb(0, 0, 198);
+}
+.cookies-accept .bot button {
+  padding: 8px 15px;
+  margin: 0 10px;
+}
+
+.bg-age {
+  position: absolute;
+  z-index: 6;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.confirm-age {
+  flex-direction: column;
+  position: absolute;
+  z-index: 7;
+  max-width: 600px;
+  max-height: 70%;
+  padding: 40px 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+.confirm-age p {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.confirm-age .top p {
+  margin-bottom: 15px;
+}
+.confirm-age .top h4 {
+  font-size: 1.2em;
+  color: #d1484d;
+}
+.confirm-age .top h5 {
+  margin-bottom: 30px;
+}
+.confirm-age .warning {
+  margin: 15px 0;
+}
+.confirm-age .bot {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.confirm-age .bot button {
+  padding: 8px 15px;
+}
+
 @keyframes lds-roller {
   0% {
     transform: rotate(0deg);
@@ -1735,6 +1959,194 @@ footer .right_box .social_container ul a:last-child img {
   height: 36px;
 }
 
+.paiement-form {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+.paiement-form .bg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+.paiement-form form {
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  z-index: 7;
+  width: 60%;
+  height: 60%;
+  padding: 20px 15px;
+  border-radius: 3px;
+  background-color: #e8e8e8;
+}
+.paiement-form form .order-number {
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+  height: 100%;
+}
+.paiement-form form .order-number h4 {
+  font-size: 1.3em;
+  font-weight: 300;
+  color: #4f4f4f;
+  width: 100%;
+}
+.paiement-form form .order-number h4::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 1px;
+  background-color: #d1484d;
+}
+.paiement-form form .order-number .name-card,
+.paiement-form form .order-number .address-order,
+.paiement-form form .order-number .number {
+  flex-direction: column;
+  width: 100%;
+  margin: 8px 0px;
+}
+.paiement-form form .order-number .name-card input,
+.paiement-form form .order-number .name-card label,
+.paiement-form form .order-number .address-order input,
+.paiement-form form .order-number .address-order label,
+.paiement-form form .order-number .number input,
+.paiement-form form .order-number .number label {
+  width: 100%;
+  font-size: 1em;
+  font-weight: 300;
+  margin: 4px 0px;
+  color: #828282;
+}
+.paiement-form form .order-number .name-card input,
+.paiement-form form .order-number .address-order input,
+.paiement-form form .order-number .number input {
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.paiement-form form .order-number .name-card .elements,
+.paiement-form form .order-number .address-order .elements,
+.paiement-form form .order-number .number .elements {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  background-color: white;
+}
+.paiement-form form .order-number button {
+  padding: 8px 50px;
+  margin-top: 15px;
+}
+
+.order-user {
+  overflow: hidden;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 40px;
+  border: 2px solid #e8e8e8;
+  border-radius: 3px;
+}
+.order-user h4 {
+  font-size: 1.1em;
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+.order-user h4::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 5%;
+  background-color: #d1484d;
+}
+.order-user hr {
+  width: 100%;
+  background-color: #e8e8e8;
+  height: 2px;
+  margin: 20px 0 10px 0;
+  border-radius: 5px;
+}
+.order-user ul {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.order-user ul li {
+  display: flex;
+  justify-content: space-between;
+  margin: 20 0px;
+  padding: 13px;
+  border-bottom: 2px solid #e8e8e8;
+  cursor: pointer;
+}
+.order-user ul li:hover {
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.order-user ul li * > p:nth-child(1) {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: #d1484d;
+}
+.order-user ul li * > p:nth-child(2) {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.order-user ul li .num-order,
+.order-user ul li .price-order {
+  margin-bottom: 20px;
+}
+.order-user ul li .top,
+.order-user ul li .middle,
+.order-user ul li .bot {
+  padding: 0px 15px;
+}
+.order-user ul li .middle {
+  flex-grow: 1;
+  margin: 0px 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+}
+.order-user ul li .middle ul {
+  padding: 0;
+}
+.order-user ul li .middle ul li {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  margin: 0 0 3px 0;
+  border: none;
+}
+.order-user ul li .middle ul li div {
+  display: flex;
+  justify-content: space-between;
+}
+.order-user ul li .middle ul li div span {
+  font-size: 0.7em;
+  margin-bottom: 5px;
+  font-weight: 300;
+}
+.order-user ul li .middle ul li div p {
+  font-weight: 500;
+}
+.order-user ul li .middle ul li div p:nth-child(1) {
+  color: black;
+}
+.order-user ul li .middle ul li div p:nth-child(2) {
+  margin-left: 15px;
+}
+
 .void ul {
   justify-content: center;
 }
@@ -1742,9 +2154,11 @@ footer .right_box .social_container ul a:last-child img {
 .cart_content {
   position: fixed;
   top: 55px;
+  right: 28%;
   z-index: 3;
   display: flex;
   flex-direction: column;
+  min-height: 200px;
   max-height: 250px;
   min-width: 250px;
   max-width: 300px;
@@ -1753,8 +2167,6 @@ footer .right_box .social_container ul a:last-child img {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   transform: translate(-8px, 6px);
-  right: 390px;
-  min-height: 200px;
   justify-content: flex-end;
 }
 .cart_content button {
@@ -1789,6 +2201,8 @@ footer .right_box .social_container ul a:last-child img {
 .cart_content ul li {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .cart_content ul li p {
   color: white;
@@ -1826,58 +2240,186 @@ footer .right_box .social_container ul a:last-child img {
 }
 
 .paiement {
-  position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 80%;
-  height: 80vh;
-  padding-left: 20px;
+  max-width: 1100px;
+  min-width: 900px;
+  width: 95%;
+  height: 90%;
   margin: auto;
-  border: 2px solid black;
-  border-radius: 10px;
 }
 .paiement .cartlist {
-  width: 50%;
-}
-.paiement p {
-  position: absolute;
-  top: -30px;
-  left: 50px;
-  width: 200px;
-  font-size: 3em;
-  text-align: center;
-  background-color: white;
-}
-.paiement .configPaiement {
-  position: absolute;
-  top: 200px;
-  right: -80px;
-  width: 35%;
+  width: 70%;
   padding: 20px;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(17, 25, 40, 0.75);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
 }
-.paiement .configPaiement form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  color: black;
+.paiement .cartlist .cart {
+  width: fit-content;
+  color: #828282;
+  font-weight: 300;
+  background: none;
 }
-.paiement .configPaiement form .StripeElement {
-  background-color: white;
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+.paiement .cartlist .cart::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 1px;
+  background-color: #d1484d;
 }
-.paiement .configPaiement form button {
+.paiement .cartlist p {
+  font-size: 2.2em;
+  font-weight: 300;
+}
+.paiement .cartlist hr {
+  width: 70%;
+  height: 2px;
+  background-color: #cfcfcf;
+}
+.paiement .cartlist ul {
+  margin: 5px 0px;
   margin-top: 20px;
 }
-
+.paiement .cartlist ul .product {
+  justify-content: flex-start;
+  position: relative;
+  height: 125px;
+  padding: 10px 0px;
+  border-top: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+}
+.paiement .cartlist ul .product img {
+  height: 95%;
+}
+.paiement .cartlist ul .product .supp-line {
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #828282;
+  cursor: pointer;
+}
+.paiement .cartlist ul .product .right {
+  display: flex;
+  flex-direction: column;
+}
+.paiement .cartlist ul .product .right .name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+.paiement .cartlist ul .product .right .name p {
+  font-size: 1.2em;
+  color: #d1484d;
+}
+.paiement .cartlist ul .product .right .name p:nth-child(2) {
+  font-size: 0.8em;
+  color: #b5b5b5;
+}
+.paiement .cartlist ul .product .right .inbuy {
+  display: flex;
+}
+.paiement .cartlist ul .product .right .inbuy .select {
+  position: relative;
+  height: fit-content;
+  padding: 5px 10px 5px 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.paiement .cartlist ul .product .right .inbuy .select .look {
+  display: flex !important;
+  flex-direction: column;
+}
+.paiement .cartlist ul .product .right .inbuy .select .top {
+  display: flex;
+}
+.paiement .cartlist ul .product .right .inbuy .select .top input {
+  width: 25px;
+}
+.paiement .cartlist ul .product .right .inbuy .select .top img {
+  height: 25px;
+  transform: rotate(-90deg);
+}
+.paiement .cartlist ul .product .right .inbuy .select .dropdown {
+  display: none;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 17px;
+}
+.paiement .cartlist ul .product .right .inbuy .select .dropdown ul {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #e8e8e8;
+}
+.paiement .cartlist ul .product .right .inbuy .select .dropdown ul li {
+  margin: 3px 0px;
+  padding: 5px 10px;
+}
+.paiement .cartlist ul .product .right .inbuy .select .dropdown ul li:hover {
+  background-color: #e8e8e8;
+}
+.paiement .cartlist ul .product .right .inbuy p {
+  font-size: 1em;
+  font-weight: 300;
+  margin-left: 20px;
+}
+.paiement .buying {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 30px;
+  background-color: #e8e8e8;
+}
+.paiement .buying .second {
+  height: 2px;
+  width: 100%;
+  margin: 15px 0px;
+  background-color: #dbdbdb;
+}
+.paiement .buying h3 {
+  font-size: 1.1em;
+  font-weight: 300;
+}
+.paiement .buying h3::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 1px;
+  background-color: #d1484d;
+}
+.paiement .buying .choice-paiement {
+  justify-content: space-around;
+}
+.paiement .buying .choice-paiement .visa,
+.paiement .buying .choice-paiement .paypal {
+  width: 90px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset;
+}
+.paiement .buying .choice-paiement .visa img,
+.paiement .buying .choice-paiement .paypal img {
+  margin-left: 10px;
+}
+.paiement .buying .choice-paiement .visa input {
+  cursor: pointer;
+}
+.paiement .buying .choice-paiement .visa img {
+  height: 40px;
+}
+.paiement .buying .choice-paiement .paypal input {
+  cursor: pointer;
+}
+.paiement .buying .choice-paiement .paypal img {
+  height: 17px;
+}
+.paiement .buying .total-paiement {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
 .home {
   width: 100%;
   height: 100vh;
@@ -2014,6 +2556,9 @@ footer .right_box .social_container ul a:last-child img {
   cursor: pointer;
   background-color: #e8e8e8;
 }
+.smallcard:hover {
+  background-color: #dbdbdb;
+}
 .smallcard .link {
   height: 80% !important;
   width: 100%;
@@ -2051,7 +2596,15 @@ footer .right_box .social_container ul a:last-child img {
 .smallcard:hover button {
   opacity: 1;
 }
+.smallcard .pending .lds-dual-ring {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .smallcard button {
+  width: 37px;
+  height: 45px;
   position: absolute;
   top: 0;
   right: 0;
@@ -2101,13 +2654,13 @@ footer .right_box .social_container ul a:last-child img {
   font-family: "Raleway", serif;
   font-size: 0.8em;
   color: white;
-  background-color: #999999;
+  background-color: #d0d0d0;
 }
 .smallcard .bot .option_attribut p:last-child {
   margin: 0px !important;
 }
 .smallcard .bot .selected {
-  background-color: #737373 !important;
+  background-color: #a0a0a0 !important;
   font-weight: 500;
 }
 
@@ -2437,6 +2990,8 @@ footer .right_box .social_container ul a:last-child img {
   z-index: 3;
   top: 50%;
   left: 50%;
+  min-width: 850px;
+  max-width: 950px;
   padding: 50px;
   background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0vh 0vh 1vh rgba(0, 0, 0, 0.5);
@@ -2551,32 +3106,59 @@ footer .right_box .social_container ul a:last-child img {
   border-bottom: 1px solid #716363;
   color: #716363;
 }
-.itemcard .right .top .price {
+.itemcard .right .bot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.itemcard .right .bot hr {
+  height: 1px;
+  width: 90%;
+  margin: 5px 0px;
+  background-color: black;
+}
+.itemcard .right .bot .price {
+  width: 100%;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 15px 0px;
 }
-.itemcard .right .top .price p {
+.itemcard .right .bot .price p {
   color: #716363;
 }
+.itemcard .right .bot .price p:nth-child(1) {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+.itemcard .right .bot .price p:nth-child(2) {
+  font-size: 1.2em;
+  font-weight: 500;
+}
 .itemcard .right .bot .options {
-  margin-bottom: 25px;
+  width: 100%;
+  margin: 25px 0px;
 }
 .itemcard .right .bot .options ul {
   display: flex;
 }
-.itemcard .right .bot .options ul li {
-  min-width: 65px;
-  margin: 0px 20px;
-  padding: 8px;
-  color: #716363;
+.itemcard .right .bot .options ul .on {
   border: 1px solid #d1484d;
+  background-color: #737373 !important;
+}
+.itemcard .right .bot .options ul li {
+  min-width: 60px;
+  margin: 0px 15px;
+  padding: 5px;
+  color: white;
   border-radius: 5px;
+  background-color: #999999;
   cursor: pointer;
 }
 .itemcard .right .bot .options ul li:hover {
-  background-color: #e8e8e8;
-}
-.itemcard .right .bot .options ul .option_active {
-  background-color: #e8e8e8;
+  background-color: #8c8c8c;
 }
 .itemcard .right .bot button {
   height: 30px;

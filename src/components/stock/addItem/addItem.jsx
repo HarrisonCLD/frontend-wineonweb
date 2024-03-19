@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
 
 import GridImage from "@components/stock/gridImage";
-import { InputForm, ButtonEvent, Select, CheckBox, SupprButton } from "@rowComponents";
+import Popup from "@components/shared/popup/popup";
+
+import { InputForm, ButtonEvent, SelectBox, CheckBox, SupprButton } from "@rowComponents";
 
 import { filterAttribut, filterOptionAttribut } from "@helpers/formulaire.helper";
 import { set_item } from "@helpers/api/item.api.helper";
 import { useData } from "@providers/data.provider";
+import { set_addstatus } from "../../../services/item.service";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function AddItem() {
+  const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const { formdata } = useData();
+
+  const [loader, setLoader] = useState("");
 
   const [item, setItem] = useState({});
   const [viewImage, setViewImage] = useState(null);
   const [attributCategorie, setAttributCategorie] = useState(formdata.attributCategorie);
   const [attributOptionAttribut, setAttributOptionAttribut] = useState(formdata.attributOptionAttribut);
+
+  const result = useSelector((state) => state.Item.add_status);
 
   useEffect(() => {
     item.categorie && filterAttribut(formdata.attributCategorie, setAttributCategorie, item);
@@ -23,6 +32,8 @@ export default function AddItem() {
   useEffect(() => {
     item.attributCategorie && filterOptionAttribut(formdata.attributOptionAttribut, setAttributOptionAttribut, item);
   }, [item]);
+
+  console.log(result);
 
   return (
     <>
@@ -44,51 +55,15 @@ export default function AddItem() {
           </div>
           <div className="provenance">
             <h4>Provenance</h4>
-            <Select name="fournisseur" state={item} setState={setItem}>
-              {formdata.fournisseur.map((fournisseur, i) => (
-                <option key={i} name="fournisseur" value={fournisseur.id}>
-                  {fournisseur.nom}
-                </option>
-              ))}
-            </Select>
-            <Select name="pays" state={item} setState={setItem}>
-              {formdata.pays.map((pays, i) => (
-                <option key={i} name="pays" value={pays.id}>
-                  {pays.nom}
-                </option>
-              ))}
-            </Select>
-            <Select name="region" state={item} setState={setItem}>
-              {formdata.region.map((region, i) => (
-                <option key={i} name="region" value={region.id}>
-                  {region.nom}
-                </option>
-              ))}
-            </Select>
+            <SelectBox name="fournisseur" setState={setItem} data={formdata.fournisseur} index={0} />
+            <SelectBox name="pays" data={formdata.pays} index={1} setState={setItem} />
+            <SelectBox name="region" data={formdata.region} index={2} setState={setItem} />
           </div>
           <div className="attribut">
             <h4>Attributs</h4>
-            <Select name="categorie" state={item} setState={setItem}>
-              {formdata.categorie.map((categorie, i) => (
-                <option key={i} name="categorie" value={categorie.id}>
-                  {categorie.nom}
-                </option>
-              ))}
-            </Select>
-            <Select name="attributCategorie" state={item} setState={setItem}>
-              {attributCategorie.map((attribut, i) => (
-                <option key={i} name="attribut" value={attribut.id_attribut.id}>
-                  {attribut.id_attribut.nom}
-                </option>
-              ))}
-            </Select>
-            <Select name="optionAttribut" state={item} setState={setItem}>
-              {attributOptionAttribut.map((optionAttr, i) => (
-                <option key={i} name="optionAttribut" value={optionAttr.id_option_attribut.id}>
-                  {optionAttr.id_option_attribut.nom}
-                </option>
-              ))}
-            </Select>
+            <SelectBox name="categorie" data={formdata.categorie} index={3} setState={setItem} />
+            <SelectBox name="attributCategorie" data={attributCategorie} index={4} setState={setItem} />
+            <SelectBox name="optionAttribut" data={attributOptionAttribut} index={5} setState={setItem} />
             <InputForm state={item} setState={setItem} placeholder="Prix du produit..." name="prix" />
           </div>
           <div className="stock">
@@ -116,11 +91,26 @@ export default function AddItem() {
               <h4>Commentaire</h4>
               <textarea name="commentaire" placeholder="Renseigner un commentaire" cols="30" rows="10" />
             </div>
-            <ButtonEvent name="submitAddItem" onClick={() => set_item(item, token)}>
-              <p>Ajouter un produit</p>
+            <ButtonEvent
+              name="submitAddItem"
+              onClick={() => {
+                dispatch(set_addstatus("pending"));
+                set_item(dispatch, item, token);
+              }}
+            >
+              {loader === "pending" ? <IsLoading /> : "Ajouter un produit"}
             </ButtonEvent>
           </div>
         </div>
+        {result === "success" ? (
+          <Popup message={"Insertion du produit réussie !"}>
+            <ButtonEvent onClick={() => dispatch(set_addstatus(""))}>OK</ButtonEvent>
+          </Popup>
+        ) : result === "error" ? (
+          <Popup message={"Une erreur s'est produite lors de l'insertion du produit !"}>
+            <ButtonEvent onClick={() => dispatch(set_addstatus(""))}>OK</ButtonEvent>
+          </Popup>
+        ) : null}
       </form>
     </>
   );

@@ -1,59 +1,224 @@
 .paiement {
-  position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 80%;
-  height: 80vh;
-  padding-left: 20px;
+  max-width: 1100px;
+  min-width: 900px;
+  width: 95%;
+  height: 90%;
   margin: auto;
-  border: 2px solid black;
-  border-radius: 10px;
 
   .cartlist {
-    width: 50%;
-  }
-
-  p {
-    position: absolute;
-    top: -30px;
-    left: 50px;
-    width: 200px;
-    font-size: 3em;
-    text-align: center;
-    background-color: white;
-  }
-
-  .configPaiement {
-    position: absolute;
-    top: 200px;
-    right: -80px;
-    width: 35%;
+    width: 70%;
     padding: 20px;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 5px;
-      color: black;
+    .cart {
+      width: fit-content;
+      color: darken(#e8e8e8, 40);
+      font-weight: 300;
+      background: none;
 
-      .StripeElement {
+      &::after {
+        content: "";
+        display: block;
+        width: 15%;
+        height: 1px;
+        background-color: $main-color;
+      }
+    }
+
+    p {
+      font-size: 2.2em;
+      font-weight: 300;
+    }
+
+    hr {
+      width: 70%;
+      height: 2px;
+      background-color: darken(#e8e8e8, 10);
+    }
+
+    ul {
+      margin: 5px 0px;
+      margin-top: 20px;
+
+      .product {
+        @extend %flexCenter;
+        justify-content: flex-start;
+        position: relative;
+        height: 125px;
+        padding: 10px 0px;
+        border-top: 1px solid darken(#e8e8e8, 10);
+        border-bottom: 1px solid darken(#e8e8e8, 10);
+
+        img {
+          height: 95%;
+        }
+
+        .supp-line {
+          position: absolute;
+          top: 10px;
+          right: 2px;
+          font-size: 0.8em;
+          font-weight: 300;
+          color: darken(#e8e8e8, 40);
+          cursor: pointer;
+        }
+
+        .right {
+          display: flex;
+          flex-direction: column;
+
+          .name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+
+            p {
+              font-size: 1.2em;
+              color: $main-color;
+
+              &:nth-child(2) {
+                font-size: 0.8em;
+                color: darken(#e8e8e8, 20);
+              }
+            }
+          }
+
+          .inbuy {
+            display: flex;
+
+            .select {
+              position: relative;
+              height: fit-content;
+              padding: 5px 10px 5px 15px;
+              border: 1px solid #e8e8e8;
+              border-radius: 3px;
+              cursor: pointer;
+
+              .look {
+                display: flex !important;
+                flex-direction: column;
+              }
+
+              .top {
+                display: flex;
+
+                input {
+                  width: 25px;
+                }
+
+                img {
+                  height: 25px;
+                  transform: rotate(-90deg);
+                }
+              }
+              .dropdown {
+                display: none;
+                position: absolute;
+                width: 100%;
+                left: 0px;
+                top: 17px;
+
+                ul {
+                  width: 100%;
+                  background-color: white;
+                  border: 1px solid #e8e8e8;
+
+                  li {
+                    margin: 3px 0px;
+                    padding: 5px 10px;
+                    &:hover {
+                      background-color: #e8e8e8;
+                    }
+                  }
+                }
+              }
+            }
+
+            p {
+              @extend %flexCenter;
+              font-size: 1em;
+              font-weight: 300;
+              margin-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .buying {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 30px;
+    background-color: #e8e8e8;
+
+    .second {
+      height: 2px;
+      width: 100%;
+      margin: 15px 0px;
+      background-color: darken(#e8e8e8, 5);
+    }
+
+    h3 {
+      font-size: 1.1em;
+      font-weight: 300;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 15%;
+        height: 1px;
+        background-color: $main-color;
+      }
+    }
+
+    .choice-paiement {
+      @extend %flexCenter;
+      justify-content: space-around;
+
+      .visa,
+      .paypal {
+        @extend %flexCenter;
+        width: 90px;
+        height: 40px;
+        border-radius: 10px;
         background-color: white;
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px inset;
+
+        img {
+          margin-left: 10px;
+        }
       }
 
-      button {
-        @extend %buttonForm;
-        margin-top: 20px;
+      .visa {
+        input {
+          cursor: pointer;
+        }
+        img {
+          height: 40px;
+        }
       }
+
+      .paypal {
+        input {
+          cursor: pointer;
+        }
+        img {
+          height: 17px;
+        }
+      }
+    }
+
+    .total-paiement {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    button {
+      @extend %buttonForm;
     }
   }
 }

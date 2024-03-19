@@ -2,7 +2,7 @@ import { addtoCart } from "@services/cart.service";
 import { showCart } from "../../../services/cart.service";
 import { useSelector } from "react-redux";
 
-export const sendtocart = (dispatch, setState, item, optionSelected) => {
+export const sendtocart = (dispatch, setState, item) => {
   setState("loading");
   try {
     dispatch(
@@ -10,13 +10,14 @@ export const sendtocart = (dispatch, setState, item, optionSelected) => {
         id: item.id,
         image: item.image,
         nom: item.nom,
-        option_attribut: item.option_attribut[optionSelected],
-        prix: item.prix[optionSelected],
+        option_attribut: item.option_attribut,
+        prix: item.prix,
+        stock: item.stock,
       })
     );
     setTimeout(() => {
       setState("");
-    }, 800);
+    }, 600);
   } catch (error) {
     console.log(error);
   }

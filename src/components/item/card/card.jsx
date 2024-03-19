@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { CloseButtonItemCard } from "@rowComponents";
-import SendToCart from "@messagebox/sendtocart";
+// import SendToCart from "@messagebox/sendtocart";
+import LoadingAddCart from "@messagebox/loadingAddCart";
 
+import { CloseButtonItemCard } from "@rowComponents";
 import { get_item } from "@helpers/api/item.api.helper";
 
 import { sendtocart } from "@helpers/cart.helper";
-import { useParams } from "react-router-dom";
-import LoadingAddCart from "@messagebox/loadingAddCart";
 
 export default function ItemCard() {
   const { id } = useParams();
@@ -28,7 +28,11 @@ export default function ItemCard() {
     <div className="itemcard">
       <CloseButtonItemCard path={"/"} close={dispatch} />
       <div className="left">
-        <img className="product_image_view_item" src={`./src/assets/images/${item.image}.png`} alt="" />
+        <img
+          className="product_image_view_item"
+          src={`./src/assets/images/${item.image}.png`}
+          alt=""
+        />
       </div>
       <div className="right">
         <div className="top">
@@ -40,24 +44,37 @@ export default function ItemCard() {
             <span></span>
           </div>
           <p className="description">{item.description}</p>
-          <div className="price">
-            <p>{item.prix && `${item.prix[optionSelected]} €`}</p>
-          </div>
         </div>
         <div className="bot">
+          <div className="price">
+            <p>Prix :</p>
+            <p>{item.prix && `${item.prix[optionSelected]} €`}</p>
+          </div>
+          <hr />
           <div className="options">
             <ul>
               {item.option_attribut &&
                 item.option_attribut.map((option, i) => (
-                  <li key={i}>
-                    <a onClick={() => setOptionSelected(i)}>{option}</a>
+                  <li
+                    key={i}
+                    className={optionSelected === i ? "on" : ""}
+                    onClick={() => setOptionSelected(i)}
+                  >
+                    <a>{option}</a>
                   </li>
                 ))}
             </ul>
           </div>
           <button
             onClick={() => {
-              sendtocart(dispatch, setStatus, item, optionSelected);
+              sendtocart(dispatch, setStatus, {
+                id: item.id,
+                image: item.image,
+                nom: item.nom,
+                option_attribut: item.option_attribut[optionSelected],
+                prix: item.prix[optionSelected],
+                stock: item.stock,
+              });
             }}
           >
             {status != "" ? <LoadingAddCart /> : "Ajouter au panier"}

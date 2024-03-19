@@ -1,0 +1,119 @@
+.order-user {
+  overflow: hidden;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 40px;
+  border: 2px solid #e8e8e8;
+  border-radius: 3px;
+
+  h4 {
+    font-size: 1.1em;
+    font-weight: 200;
+    letter-spacing: 1px;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 5%;
+      background-color: $main-color;
+    }
+  }
+
+  hr {
+    width: 100%;
+    background-color: #e8e8e8;
+    height: 2px;
+    margin: 20px 0 10px 0;
+    border-radius: 5px;
+  }
+
+  ul {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin: 20 0px;
+      padding: 13px;
+      border-bottom: 2px solid #e8e8e8;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten(#e8e8e8, 5);
+        border-radius: 5px;
+      }
+
+      * > p:nth-child(1) {
+        font-size: 0.9em;
+        font-weight: 500;
+        color: $main-color;
+      }
+
+      * > p:nth-child(2) {
+        font-size: 0.8em;
+        font-weight: 300;
+      }
+
+      .num-order,
+      .price-order {
+        margin-bottom: 20px;
+      }
+
+      .top,
+      .middle,
+      .bot {
+        padding: 0px 15px;
+      }
+
+      .middle {
+        flex-grow: 1;
+        margin: 0px 5px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-right: 1px solid #e8e8e8;
+        border-left: 1px solid #e8e8e8;
+
+        ul {
+          padding: 0;
+
+          li {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 0;
+            margin: 0 0 3px 0;
+            border: none;
+
+            div {
+              display: flex;
+              justify-content: space-between;
+
+              span {
+                font-size: 0.7em;
+                margin-bottom: 5px;
+                font-weight: 300;
+              }
+
+              p {
+                font-weight: 500;
+              }
+
+              p:nth-child(1) {
+                color: black;
+              }
+              p:nth-child(2) {
+                margin-left: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

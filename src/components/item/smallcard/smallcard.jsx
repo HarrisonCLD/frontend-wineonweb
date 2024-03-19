@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import LoadingAddCart from "@messagebox/loadingAddCart";
+
 import { ButtonEvent } from "@rowComponents";
 
-import { addtoCart } from "@services/cart.service";
 import { set_view } from "@services/item.service";
+import { sendtocart } from "@helpers/cart.helper";
 
 export const VSmallCard = ({ data }) => {
+  const [status, setStatus] = useState("");
   const dispatch = useDispatch();
 
   return (
@@ -22,6 +25,8 @@ export const VSmallCard = ({ data }) => {
 export const SmallCard = ({ data }) => {
   const dispatch = useDispatch();
   const [optionSelected, setOptionSelected] = useState(0);
+  const [status, setStatus] = useState("");
+
   return (
     <div className="smallcard" onClick={() => dispatch(set_view(data.id))}>
       <Link to={`${data.id}`} className="link">
@@ -58,18 +63,18 @@ export const SmallCard = ({ data }) => {
         name="addcart"
         onClick={(e) => {
           e.stopPropagation();
-          dispatch(
-            addtoCart({
-              id: data.id,
-              image: data.image,
-              nom: data.nom,
-              option_attribut: data.option_attribut[optionSelected],
-              prix: data.prix[optionSelected],
-            })
-          );
+          sendtocart(dispatch, setStatus, {
+            id: data.id,
+            image: data.image,
+            nom: data.nom,
+            option_attribut: data.option_attribut[optionSelected],
+            prix: data.prix[optionSelected],
+            stock: data.stock,
+          });
         }}
+        className={status != "" ? "pending" : null}
       >
-        +
+        {status != "" ? <LoadingAddCart /> : "+"}
       </ButtonEvent>
     </div>
   );

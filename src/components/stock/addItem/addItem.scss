@@ -19,6 +19,103 @@
     }
   }
 
+  .ipt {
+    width: 100%;
+  }
+
+  .provenance,
+  .attribut {
+    .select {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      border-radius: 5px;
+      border: 2px solid #e8e8e8;
+      font-family: "Raleway", sans-serif;
+
+      input {
+        transition: all 300ms ease-in;
+
+        &::placeholder {
+          text-transform: capitalize;
+        }
+      }
+
+      p {
+        font-size: 0.9em;
+        color: #858585;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        border-radius: 5px;
+        cursor: pointer;
+
+        input {
+          background-color: transparent;
+          border: none;
+        }
+
+        &:hover {
+          background-color: darken(white, 4);
+        }
+
+        p {
+          text-transform: capitalize;
+          font-family: "Raleway", sans-serif;
+        }
+
+        img {
+          transform: rotate(-90deg);
+          height: 20px;
+          margin-right: 15px;
+        }
+      }
+
+      .look {
+        display: block !important;
+        position: absolute;
+        background: white;
+        width: 100%;
+        height: 0px;
+        left: 0px;
+        top: 40px;
+        border: 1px solid #e8e8e8;
+        overflow: hidden;
+        animation: fadeInSelectBox 150ms ease-in forwards;
+      }
+
+      .dropdown {
+        display: none;
+        opacity: 0;
+        z-index: 1;
+        max-height: 200px;
+        overflow-y: auto;
+
+        ul {
+          li {
+            font-size: 0.9em;
+            font-family: "Raleway", sans-serif;
+            color: black !important;
+            padding: 7px 8px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #e8e8e8;
+            }
+            &:nth-child(1) {
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .informations,
   .provenance,
   .attribut,
@@ -31,6 +128,7 @@
     input,
     textarea,
     select {
+      width: 100%;
       border: 2px solid #e8e8e8;
       border-radius: 3px;
       padding: 10px 15px;
@@ -122,7 +220,6 @@
       }
     }
     input {
-      width: 50%;
       grid-area: prix;
     }
   }
@@ -151,10 +248,17 @@
     }
     .checkbox {
       grid-area: checkbox;
+      display: flex;
+      align-items: center;
+      max-width: 200px;
+      margin: 10px 0px;
 
       input {
-        margin-top: 5px;
         margin-right: 15px;
+      }
+
+      label {
+        text-wrap: nowrap;
       }
     }
   }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { set_view } from "@services/item.service";
+import { modifyQte } from "@services/cart.service";
+import { useDispatch } from "react-redux";
 
 // Input de formulaire, handleChange pour renvoyer la value vers un state :
 export const InputForm = ({ name, setState, state, placeholder, pattern, error }) => {
@@ -50,7 +52,13 @@ export const InputPassword = ({ name, setState, state, placeholder, pattern, err
   };
   return (
     <div className="ipt">
-      <input type="password" name={name} onChange={handleChange} placeholder={placeholder} required />
+      <input
+        type="password"
+        name={name}
+        onChange={handleChange}
+        placeholder={placeholder}
+        required
+      />
       {errPattern ? <p>{error}</p> : null}
     </div>
   );
@@ -64,7 +72,13 @@ export const InputDate = ({ name, setState, state, placeholder }) => {
 
   return (
     <div className="ipt">
-      <input type="date" name={name} onChange={(e) => handleChange(e)} placeholder={placeholder} required />
+      <input
+        type="date"
+        name={name}
+        onChange={(e) => handleChange(e)}
+        placeholder={placeholder}
+        required
+      />
     </div>
   );
 };
@@ -101,7 +115,9 @@ export const SelectBox = ({ data, name, setState, index }) => {
   const delayDebounceFn = (searchTerm, data, setState) => {
     setTimeout(() => {
       if (searchTerm != "") {
-        const filteredData = data.filter((item) => item.nom.toLowerCase().startsWith(searchTerm.toLowerCase()));
+        const filteredData = data.filter((item) =>
+          item.nom.toLowerCase().startsWith(searchTerm.toLowerCase())
+        );
         setState(filteredData);
       } else {
         setFilter(data.slice());
@@ -109,6 +125,10 @@ export const SelectBox = ({ data, name, setState, index }) => {
     }, 300);
     return () => clearTimeout(delayDebounceFn);
   };
+
+  useEffect(() => {
+    setFilter(data.slice());
+  }, [data]);
 
   useEffect(() => {
     delayDebounceFn(inputValue, data, setFilter);
@@ -137,7 +157,7 @@ export const SelectBox = ({ data, name, setState, index }) => {
             setInputValue(e.target.value);
           }}
         />
-        <img src="./src/assets/images/arrow-select.svg" alt="arrow-select" />
+        <img src="http://localhost:5173/src/assets/images/arrow-select.svg" alt="arrow-select" />
       </div>
       <div className={`dropdown ${look ? "look" : ""}`}>
         <ul>
@@ -152,6 +172,80 @@ export const SelectBox = ({ data, name, setState, index }) => {
               }}
             >
               {row.nom}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export const SelectCartQte = ({ defaultValue, data, item, setState, index }) => {
+  const dispatch = useDispatch();
+  const [look, setLook] = useState(false);
+  const [selected, setSelected] = useState(item.quantite);
+  const [filter, setFilter] = useState(data.slice());
+  const [inputValue, setInputValue] = useState("");
+
+  const delayDebounceFn = (searchTerm, data, setState) => {
+    setTimeout(() => {
+      if (searchTerm != "") {
+        const filteredData = data.filter((item) =>
+          item.nom.toLowerCase().startsWith(searchTerm.toLowerCase())
+        );
+        setState(filteredData);
+      } else {
+        setFilter(data.slice());
+      }
+    }, 300);
+    return () => clearTimeout(delayDebounceFn);
+  };
+
+  useEffect(() => {
+    setFilter(data.slice());
+  }, [data]);
+
+  useEffect(() => {
+    delayDebounceFn(inputValue, data, setFilter);
+  }, [inputValue]);
+
+  useEffect(() => {
+    const elem = document.querySelectorAll(".select");
+    const tab = Array.from(elem);
+    document.addEventListener("click", function (event) {
+      const outsideClick = !tab[index].contains(event.target);
+      if (outsideClick) {
+        setLook(false);
+      }
+    });
+  }, []);
+
+  return (
+    <div className="select">
+      <div className="top" onClick={() => setLook(!look)}>
+        <input
+          type="text"
+          placeholder={defaultValue}
+          value={selected !== null ? selected : defaultValue}
+          onChange={(e) => {
+            setSelected(null);
+            setInputValue(e.target.value);
+          }}
+        />
+        <img src="http://localhost:5173/src/assets/images/arrow-select.svg" alt="arrow-select" />
+      </div>
+      <div className={`dropdown ${look ? "look" : ""}`}>
+        <ul>
+          {filter.map((row, i) => (
+            <li
+              key={i}
+              onClick={() => {
+                setLook(!look);
+                setSelected(row);
+                dispatch(modifyQte({ id: item.id, qte: row }));
+              }}
+            >
+              {row}
             </li>
           ))}
         </ul>
@@ -276,7 +370,12 @@ export const SearchBar = ({ state, setState }) => {
     <div className="search">
       <InputForm name="searchbar" state={state} setState={setState} placeholder="Rechercher..." />
       {searchBar ? (
-        <img onClick={clearSearch} className="clear" src="./src/assets/images/close-icon.svg" alt="#" />
+        <img
+          onClick={clearSearch}
+          className="clear"
+          src="./src/assets/images/close-icon.svg"
+          alt="#"
+        />
       ) : (
         <img src="./src/assets/images/search-icon.svg" alt="#" />
       )}

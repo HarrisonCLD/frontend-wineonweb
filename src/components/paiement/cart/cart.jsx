@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { ButtonEvent } from "@components/shared/rowComponents";
 
-import { increaseItem, decreaseItem } from "@services/cart.service";
-
-import { navigateTo } from "@helpers/navigation.helper";
+import { showCart, increaseItem, decreaseItem } from "@services/cart.service";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -34,7 +32,15 @@ export default function Cart() {
             <p>Panier vide</p>
           )}
         </ul>
-        <ButtonEvent className={cartList.length > 0 ? "active" : ""} onClick={() => cartList.length > 0 && navigateTo(navigate, "/paiement")}>
+        <ButtonEvent
+          className={cartList.length > 0 ? "active" : ""}
+          onClick={() => {
+            if (cartList.length > 0) {
+              navigate("/paiement");
+              dispatch(showCart());
+            }
+          }}
+        >
           Paiement
         </ButtonEvent>
       </div>

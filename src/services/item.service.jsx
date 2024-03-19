@@ -6,6 +6,7 @@ export const itemServices = createSlice({
     status: "pending",
     view: false,
     item: {},
+    add_status: "",
   },
 
   reducers: {
@@ -18,7 +19,10 @@ export const itemServices = createSlice({
     set_status: (state, data) => {
       state.status = data.payload;
     },
+    set_addstatus: (state, data) => {
+      state.add_status = data.payload;
+    },
   },
 });
 
-export const { view, item, set_view, set_items, set_status } = itemServices.actions;
+export const { view, item, add_status, set_view, set_items, set_status, set_addstatus } = itemServices.actions;

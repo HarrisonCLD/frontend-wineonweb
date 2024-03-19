@@ -5,7 +5,7 @@ const API = "http://localhost:10051";
 // SCHEMA
 export const setData = async (path, state, bearer = null) => {
   try {
-    await axios({
+    const response = await axios({
       method: "post",
       url: `${API}${path}`,
       data: state,
@@ -13,12 +13,10 @@ export const setData = async (path, state, bearer = null) => {
         "Content-Type": "application/json",
         ...(bearer && { Authorization: bearer }),
       },
-    }).then((response) => {
-      return response.data;
     });
+    return response.data;
   } catch (error) {
-    console.log(error);
-    throw error;
+    return false;
   }
 };
 

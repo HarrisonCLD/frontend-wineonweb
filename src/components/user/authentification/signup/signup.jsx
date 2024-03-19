@@ -12,8 +12,10 @@ import { set_newuser } from "@helpers/api/user.api.helper";
 import { useData } from "../../../../providers/data.provider";
 
 import { pattern } from "@helpers/pattern/pattern.bank";
+import Popup from "../../../shared/popup/popup";
 
 export default function SignUp() {
+  const [signup, setSignup] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { formdata } = useData();
@@ -23,11 +25,18 @@ export default function SignUp() {
 
   const set_signup = async () => {
     await dispatch(set_status("pending"));
-    await set_newuser(formData);
+    const result = await set_newuser(formData);
+    result && setSignup(result.message);
   };
-
+  console.log(signup);
   return (
     <div className="authentification">
+      {signup != "" ? (
+        <Popup>
+          <p>{signup}</p>
+          <ButtonEvent onClick={() => setSignup("")}>OK</ButtonEvent>
+        </Popup>
+      ) : null}
       {loading.status && <AuthentificationBox setStatus={loading} />}
       <form className="signup">
         <div className="top">
@@ -35,18 +44,53 @@ export default function SignUp() {
         </div>
         <div className="bot">
           <div className="left">
-            <SelectBox className="civilite" name={"civilite"} data={formdata.civilite} setState={setFormData} index={0} />
+            <SelectBox
+              className="civilite"
+              name={"civilite"}
+              data={formdata.civilite}
+              setState={setFormData}
+              index={0}
+            />
             <InputForm name="nom" placeholder="Nom" state={formData} setState={setFormData} />
             <InputForm name="prenom" placeholder="Prénom" state={formData} setState={setFormData} />
-            <InputForm name="email" placeholder="Votre email" state={formData} setState={setFormData} />
-            <InputForm name="password" placeholder="Votre mot de passe" state={formData} setState={setFormData} />
-            <InputForm name="code_postal" placeholder="Votre code postal" state={formData} setState={setFormData} />
-            <InputDate name="date_de_naissance" placeholder="Date de naissance" state={formData} setState={setFormData} />
+            <InputForm
+              name="email"
+              placeholder="Votre email"
+              state={formData}
+              setState={setFormData}
+            />
+            <InputForm
+              name="password"
+              placeholder="Votre mot de passe"
+              state={formData}
+              setState={setFormData}
+            />
+            <InputForm
+              name="code_postal"
+              placeholder="Votre code postal"
+              state={formData}
+              setState={setFormData}
+            />
+            <InputDate
+              name="date_de_naissance"
+              placeholder="Date de naissance"
+              state={formData}
+              setState={setFormData}
+            />
           </div>
           <div className="right">
-            <InputForm name="adresse" placeholder="Votre adresse" state={formData} setState={setFormData} />
-            <InputForm name="ville" placeholder="Votre ville" state={formData} setState={setFormData} />
-            <InputForm name="code_postal" placeholder="Votre code postal" state={formData} setState={setFormData} />
+            <InputForm
+              name="adresse"
+              placeholder="Votre adresse"
+              state={formData}
+              setState={setFormData}
+            />
+            <InputForm
+              name="ville"
+              placeholder="Votre ville"
+              state={formData}
+              setState={setFormData}
+            />
             <SelectBox name={"pays"} data={formdata.pays} setState={setFormData} index={1} />
             <InputForm
               name="telephone"
@@ -65,8 +109,16 @@ export default function SignUp() {
           </p>
         </div>
       </form>
-      <img className="login-page-image1" src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png" alt="Login image 1" />
-      <img className="login-page-image2" src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png" alt="Login image 2" />
+      <img
+        className="login-page-image1"
+        src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png"
+        alt="Login image 1"
+      />
+      <img
+        className="login-page-image2"
+        src="./src/assets/png/Gerald-G-Simple-Fruit-FF-Menu-6.png"
+        alt="Login image 2"
+      />
     </div>
   );
 }

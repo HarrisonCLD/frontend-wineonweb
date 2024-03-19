@@ -8,7 +8,7 @@ import { get_images } from "@helpers/api/dataform.api.helper";
 
 export default function GridImage({ data, stateForm, setStateForm, setState }) {
   const [imgSelected, setImgSelected] = useState(null);
-  console.log(data);
+
   return (
     <>
       <div className="viewImage">

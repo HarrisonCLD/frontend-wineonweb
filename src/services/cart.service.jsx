@@ -1,7 +1,4 @@
-import {
-  configureStore as reduxConfigureStore,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { configureStore as reduxConfigureStore, createSlice } from "@reduxjs/toolkit";
 
 export const cartServices = createSlice({
   name: "cart",
@@ -18,8 +15,7 @@ export const cartServices = createSlice({
     addtoCart: (state, data) => {
       const existingItem = state.items.find(
         (item) =>
-          item.id === data.payload.id &&
-          item.option_attribut === data.payload.option_attribut
+          item.id === data.payload.id && item.option_attribut === data.payload.option_attribut
       );
       if (existingItem) {
         existingItem.quantite++;
@@ -39,9 +35,7 @@ export const cartServices = createSlice({
 
     decreaseItem: (state, action) => {
       const itemId = action.payload;
-      const itemToDecreaseIndex = state.items.findIndex(
-        (item) => item.id === itemId
-      );
+      const itemToDecreaseIndex = state.items.findIndex((item) => item.id === itemId);
       if (itemToDecreaseIndex !== -1) {
         const itemToDecrease = state.items[itemToDecreaseIndex];
         itemToDecrease.quantite--;
@@ -51,8 +45,18 @@ export const cartServices = createSlice({
         }
       }
     },
+
+    modifyQte: (state, action) => {
+      const itemId = action.payload.id;
+      const qte = action.payload.qte;
+      const itemToIncrease = state.items.find((item) => item.id === itemId);
+      if (itemToIncrease) {
+        itemToIncrease.quantite = qte;
+        console.log(qte);
+      }
+    },
   },
 });
 
-export const { show, items, showCart, addtoCart, increaseItem, decreaseItem } =
+export const { show, items, showCart, addtoCart, increaseItem, decreaseItem, modifyQte } =
   cartServices.actions;

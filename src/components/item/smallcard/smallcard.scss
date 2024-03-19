@@ -64,6 +64,10 @@
   cursor: pointer;
   background-color: #e8e8e8;
 
+  &:hover {
+    background-color: darken(#e8e8e8, 5);
+  }
+
   .link {
     height: 80% !important;
     width: 100%;
@@ -114,7 +118,18 @@
     opacity: 1;
   }
 
+  .pending {
+    .lds-dual-ring {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   button {
+    width: 37px;
+    height: 45px;
     position: absolute;
     top: 0;
     right: 0;
@@ -168,14 +183,14 @@
         font-family: "Raleway", serif;
         font-size: 0.8em;
         color: white;
-        background-color: lighten(black, 60);
+        background-color: #d0d0d0;
       }
       p:last-child {
         margin: 0px !important;
       }
     }
     .selected {
-      background-color: lighten(black, 45) !important;
+      background-color: #a0a0a0 !important;
       font-weight: 500;
     }
   }
